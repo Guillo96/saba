@@ -1,0 +1,25 @@
+<div class="panel panel-success">
+  <div class="panel panel-heading">
+    <h4> Tipos de eventos</h4>
+  </div>
+  <div class="panel panel-body">
+    <form role="form" name="creartipoevento">
+      <div class="form-group" ng-class="{'has-error': creartipoevento.descripcion.$invalid, 'has-success':creartipoevento.descripcion.$valid}">
+        <label for="descripcion">Descripción</label>
+        <input type="text" class="form-control" name="descripcion" id="descripcion" ng-model="tipoevento.descripcion" placeholder="ejemplo: bloqueado" required>
+        <div ng-show="creartipoevento.descripcion.$dirty && creartipoevento.descripcion.$invalid">
+          <p class="help-block text-danger" ng-show="creartipoevento.descripcion.$error.required">Obligatorio</p>
+          <p class="help-block text-danger" ng-show="creartipoevento.descripcion.$error.text">Invalido</p>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': creartipoevento.ide.$invalid, 'has-success':creartipoevento.ide.$valid}">
+        <label for="ide">Identificador</label>
+        <input type="number" class="form-control" name="ide" id="ide" ng-model="tipoevento.ide" placeholder="ejemplo: 3" min="{{tiposeventoMin}}" value="{{tipoevento.ide}}">
+        <div ng-show="creartipoevento.ide.$dirty && creartipoevento.ide.$invalid">
+          <p class="help-block text-danger" ng-show="creartipoevento.ide.$error.number">Debe ser un número entero</p>
+        </div>
+      </div>
+      <button class="btn btn-primary" ng-disabled="creartipoevento.$invalid" ng-click="enviar()">Registrar</button>
+    </form>
+  </div>
+</div>

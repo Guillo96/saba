@@ -1,0 +1,58 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>Servicios</h4>
+    <form >
+        <div class="row">
+          <div class="col-lg-10">
+            <div class="input-group">
+              <input name="k" type="text" class="form-control" placeholder="Buscar " ng-model="buscar" >
+              <span class="input-group-addon">
+                <i class="glyphicon glyphicon-search" ng-click="buscar()"></i>
+              </span>
+            </div>
+          </div>
+        </div>                            
+      </form>
+      <div class="row">
+        <div class="col-lg-12">
+          <a class="btn btn-success" href="#/admin/servicios/crear"><i class="glyphicon glyphicon-plus"></i> agregar</a>
+          <span ng-show="sel == 1">
+            <button class="btn btn-default" ng-click="actualizar()">
+                <i class="glyphicon glyphicon-pencil"></i> actualizar
+              </button>
+          </span>
+          <span ng-show="sel">
+            <button class="btn btn-danger" ng-click="eliminar()"><i class="glyphicon glyphicon-minus"></i> eliminar</button>
+          </span>
+        </div>
+      </div>
+  </div>
+  <div class="panel-body">
+    <div class="table-responsive">
+      <table class="table table-striped table-condensed">
+        <thead>
+          <tr class="text-default">
+            <th></th>
+            <th> Código</th>
+            <th> Título</th>  
+            <th> Fecha</th>
+            <th> Creador</th>
+            <th> Mensaje</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="obj in objetos | filter: buscar">
+            <td>
+              <input type="checkbox" ng-model="obj.seleccionado">
+            </td>
+            <td>{{obj.codigo}}</td>
+            <td>{{obj.titulo}}</td>
+            <td>{{obj.fecha}}</td>
+            <td>{{obj.creador}}</td>
+            <td>{{obj.mensaje}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="panel panel-default">
+  <div class="panel panel-heading">
+    <h4> Antesala</h4>
+  </div>
+  <div class="panel panel-body">
+    <form role="form" name="crearantesala">
+      <div class="form-group" ng-class="{'has-error': crearantesala.titulo.$invalid, 'has-default':crearantesala.titulo.$valid}">
+        <label for="titulo">Título</label>
+        <input type="text" class="form-control" name="titulo" id="titulo" ng-model="antesala.titulo" placeholder="ejemplo: Reunión importante!" min="{{titulosMin}}" value="{{antesala.titulo}} required" required>
+        <div ng-show="crearantesala.titulo.$dirty && crearantesala.titulo.$invalid">
+          <p class="help-block text-danger" ng-show="crearantesala.titulo.$error.required">Obligatorio</p>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': crearantesala.fecha.$invalid, 'has-default':crearantesala.fecha.$valid}">
+        <label for="fecha">Fecha muestra</label>
+        <input type="date" min="1996-05-23" class="form-control" name="fecha" id="fecha" ng-model="antesala.fecha" placeholder="ejemplo: 293" min="{{fechasMin}}" value="{{antesala.fecha}}" required>
+        <div ng-show="crearantesala.fecha.$dirty && crearantesala.fecha.$invalid">
+          <p class="help-block text-danger" ng-show="crearantesala.fecha.$error.required">Obligatorio</p>
+        </div>
+      <div class="form-group" ng-class="{'has-error': crearantesala.antesala.$invalid, 'has-default':crearantesala.antesala.$valid}">
+        <label for="creador">creador </label>
+        <select class="form-control" name="creador" id="creador" ng-model="antesala.creador" ng-model="antesala.creador" ng-options="formulario.creador for formulario in formulariocreador" required></select>
+        <div ng-show="crearantesala.antesala.$dirty && crearantesala.antesala.$invalid">
+          <p class="help-block text-danger" ng-show="crearantesala.antesala.$error.required">Obligatorio</p>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': crearantesala.mensaje.$invalid, 'has-default':crearantesala.mensaje.$valid}">
+        <label for="mensaje">Mensaje</label>
+        <input type="text" class="form-control" name="mensaje" id="mensaje" ng-model="antesala.mensaje" placeholder="ejemplo: Hoy reunión importante sobre el seguimiento a los servicios prestados." required>
+        <div ng-show="crearantesala.mensaje.$dirty && crearantesala.mensaje.$invalid">
+          <p class="help-block text-danger" ng-show="crearantesala.mensaje.$error.required">Obligatorio</p>
+          <p class="help-block text-danger" ng-show="crearantesala.mensaje.$error.text">Invalido</p>
+        </div>
+      </div>
+      <button popover-placement="top" popover="El mensaje ha sido creado correctamente" class="btn btn-primary" ng-disabled="crearantesala.$invalid" ng-click="enviar()">Crear</button>
+    </form>
+  </div>
+</div>

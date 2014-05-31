@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="name" content="content">
+  <meta http-equiv="X-UA-Compatible" content="IE-Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ICBF</title>
+  <script src="../lib/angular.min.js" type="text/javascript"></script>
+  <script src="../lib/angular-route.min.js" type="text/javascript"></script>
+  <script src="../lib/ui-bootstrap-tpls-0.11.0.min.js" type="text/javascript"></script>
+  <script src="../lib/kinvey-angular-1.1.8.min.js" type="text/javascript"></script>
+ 
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+  <script src="../lib/controllers.js" type="text/javascript"></script>
+  <script src="../js/icbf.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="../css/icbf.css">
+</head>
+
+<body ng-app>
+<div id="main-login-div" >
+<div class="container" xmlns="http://www.w3.org/1999/html">
+    <div class="block-div" ng-controller="LoginController">
+        <form class="form-signin" role="form" name="loginForm" novalidate> 
+            <hr>
+            <h2 class="form-signin-heading">Inicio de Sesion</h2>
+
+            <div class="block-input-label">
+                <label id="login-email-label" ng-class="" for="login-email">Usuario:</label>
+                <input class="form-control" id="login-email" type="text" name="email"  ng-model="username"placeholder="john@example.com"/>
+                <span class="login" id="login-span" </span>
+            </div>
+
+            <div>
+                <label class="password-label" ng-class="" for="login-password">Contraseña:</label>
+                <input id="login-password" class="form-control" type="password" name="password" ng-model="password" ng-class="{'error-style': submittedPassword}" placeholder="********"  required />
+                <span class="login" </span>
+            </div>
+
+            <div>
+                <hr>
+                <button class="btn btn-lg btn-primary btn-block" type="submit" id="login-button" ng-click="login()">
+                    Iniciar sesión
+                </button>
+                <span class="error" ng-show=""</span>
+            </div>
+       </form>
+     </div>
+</div>
+</div>
+</body>
+</html>
+
+

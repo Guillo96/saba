@@ -1,0 +1,31 @@
+
+.caption{
+	text-align: center;
+}
+.administracionImg::before{
+	content: xx;
+}
+.iconosHome{
+	width: 5%;
+}
+.dashboardOpc{
+	background-color: green;
+	height: 10em;
+}
+.thumbnail{
+	height: 60%;
+	background-color: 72b93c;
+	color: white;
+}
+.thumbnail > .caption > h4 {
+	color: #069;
+}
+.thumbnail > .indicadores{
+	color: #D2A32F;
+}
+/*col-xs*/
+@media (max-width:767px){
+	.col-xs-12 > .container > .row > .col-xs-12 > .thumbnail{
+		height: 20%;
+	}
+}

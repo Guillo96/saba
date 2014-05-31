@@ -1,0 +1,74 @@
+<div class="panel panel-success">
+  <div class="panel panel-heading">
+    <h4> Hogares</h4>
+  </div>
+  <div class="panel panel-body">
+    <form role="form" name="crearhogar">
+      <div class="form-group" ng-class="{'has-error': crearhogar.nombre.$invalid, 'has-success':crearhogar.nombre.$valid}">
+        <label for="nombre">Nombre</label>
+        <input type="text" class="form-control" name="nombre" id="nombre" ng-model="hogar.nombre" placeholder="ejemplo: C.Z. Quibdó" required>
+        <div ng-show="crearhogar.nombre.$dirty && crearhogar.nombre.$invalid">
+          <p class="help-block text-danger" ng-show="crearhogar.nombre.$error.required">Obligatorio</p>
+          <p class="help-block text-danger" ng-show="crearhogar.nombre.$error.text">Invalido</p>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': crearhogar.codigo.$invalid, 'has-success':crearhogar.codigo.$valid}">
+        <label for="codigo">Código</label>
+        <input type="number" class="form-control" name="codigo" id="codigo" ng-model="hogar.codigo" placeholder="ejemplo: 293" min="{{codigosMin}}" value="{{hogar.codigo}}">
+        <div ng-show="crearhogar.codigo.$dirty && crearhogar.codigo.$invalid">
+          <p class="help-block text-danger" ng-show="crearhogar.codigo.$error.number">Debe ser un código valido</p>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': crearhogar.hogar.$invalid, 'has-success':crearhogar.hogar.$valid}">
+        <label for="departamento">Ciudad <small>Departamento</small></label>
+        <select class="form-control" name="departamento" id="departamento" ng-model="hogar.departamento" ng-model="hogar.departamento" ng-options="formulario.nombre group by formulario.departamento for formulario in formulariodepartamento" required></select>
+        <div ng-show="crearhogar.hogar.$dirty && crearhogar.hogar.$invalid">
+          <p class="help-block text-danger" ng-show="crearhogar.hogar.$error.required">Obligatorio</p>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': crearhogar.direccion.$invalid, 'has-success':crearhogar.direccion.$valid}">
+        <label for="direccion">Dirección</label>
+        <input type="text" class="form-control" name="direccion" id="direccion" ng-model="hogar.direccion" placeholder="ejemplo: Carrera 20 # 30-45" required>
+        <div ng-show="crearhogar.direccion.$dirty && crearhogar.direccion.$invalid">
+          <p class="help-block text-danger" ng-show="crearhogar.direccion.$error.required">Obligatorio</p>
+          <p class="help-block text-danger" ng-show="crearhogar.direccion.$error.text">Invalido</p>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': crearhogar.contacto.$invalid, 'has-success':crearhogar.contacto.$valid}">
+        <label for="contacto">Teléfono</label>
+        <input type="text" class="form-control" name="contacto" id="contacto" ng-model="hogar.contacto" placeholder="ejemplo: 0343152929" required>
+        <div ng-show="crearhogar.contacto.$dirty && crearhogar.contacto.$invalid">
+          <p class="help-block text-danger" ng-show="crearhogar.contacto.$error.required">Obligatorio</p>
+          <p class="help-block text-danger" ng-show="crearhogar.contacto.$error.text">Invalido</p>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': crearhogar.extension.$invalid, 'has-success':crearhogar.extension.$valid}">
+        <label for="extension">Extensión</label>
+        <input type="text" class="form-control" name="extension" id="extension" ng-model="hogar.extension" placeholder="ejemplo: 301" required>
+        <div ng-show="crearhogar.extension.$dirty && crearhogar.extension.$invalid">
+          <p class="help-block text-danger" ng-show="crearhogar.extension.$error.required">Obligatorio</p>
+          <p class="help-block text-danger" ng-show="crearhogar.extension.$error.text">Invalido</p>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': crearhogar.responsable.$invalid, 'has-success':crearhogar.responsable.$valid}">
+        <label for="responsable">Responsable</label>
+        <input type="text" class="form-control" name="responsable" id="responsable" ng-model="hogar.responsable" placeholder="ejemplo: John Chaverra Quintana" required>
+        <div ng-show="crearhogar.responsable.$dirty && crearhogar.responsable.$invalid">
+          <p class="help-block text-danger" ng-show="crearhogar.responsable.$error.required">Obligatorio</p>
+          <p class="help-block text-danger" ng-show="crearhogar.responsable.$error.text">Invalido</p>
+        </div>
+      </div>
+      <!--
+      <div class="form-group" ng-class="{'has-error': crearhogar.imagen.$invalid, 'has-success':crearhogar.imagen.$valid}">
+        <label for="imagen">Imagen</label>
+        <input type="file" class="form-control" name="files[]" id="files" ng-model="hogar.imagen" placeholder="" required>
+        <div ng-show="crearhogar.imagen.$dirty && crearhogar.imagen.$invalid">
+          <p class="help-block text-danger" ng-show="crearhogar.imagen.$error.required">Obligatorio</p>
+          <p class="help-block text-danger" ng-show="crearhogar.imagen.$error.text">Invalido</p>
+        </div>
+      </div>
+      -->
+      <button class="btn btn-primary" ng-disabled="crearhogar.$invalid" ng-click="enviar()">Registrar</button>
+    </form>
+  </div>
+</div>

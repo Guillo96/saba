@@ -1,0 +1,22 @@
+
+.caption{
+	text-align: center;
+}
+.administracionImg::before{
+	content: xx;
+}
+.iconosHome{
+	width: 5%;
+}
+.dashboardOpc{
+	background-color: green;
+	height: 10em;
+}
+.dashboardOpc a span{
+	color: white;
+}
+
+.thumbnail{
+	height: 10em;
+	background-color: 72b93c;
+}

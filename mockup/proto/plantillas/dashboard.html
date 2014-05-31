@@ -1,0 +1,28 @@
+<div class="row" ng-controller="dashboardCtrl">
+  <div class="dashboarOpc col-xs-12 col-sm-6 col-md-3 col-lg-3">
+      <a href="#/admin/centros" class="thumbnail">
+        <img src="imagenes/png/icon/glyphicons_003_user.png" class="iconosHome" alt="">
+        <div class="caption">
+          <h4>Técnico</h4>
+        </div>
+      </a>
+  </div>
+  <div class="dashboarOpc col-xs-12 col-sm-6 col-md-3 col-lg-3 ">
+      <a href="#/alertas" class="thumbnail">
+        <img src="imagenes/png/icon/glyphicons_029_notes_2.png" class="iconosHome" alt="">
+        <span ng-bind="alertas"></span>
+        <div class="caption">
+          <h4>Programador</h4>
+        </div>
+      </a>
+  </div>
+  <div class="dashboarOpc col-xs-12 col-sm-6 col-md-3 col-lg-3 ">
+      <a href="#/admin/antesala" class="thumbnail">
+        <img src="imagenes/png/icon/glyphicons_119_table.png" class="iconosHome" alt="">
+        <span ng-bind="indicadores"></span>
+        <div class="caption">
+          <h4>Administrador</h4>
+        </div>
+      </a>
+  </div>
+</div>
