@@ -1,38 +1,95 @@
 <div class="panel panel-default">
   <div class="panel panel-heading">
-    <h4> Antesala</h4>
+    <h4> Servicios</h4>
   </div>
   <div class="panel panel-body">
-    <form role="form" name="crearantesala">
-      <div class="form-group" ng-class="{'has-error': crearantesala.titulo.$invalid, 'has-default':crearantesala.titulo.$valid}">
-        <label for="titulo">Título</label>
-        <input type="text" class="form-control" name="titulo" id="titulo" ng-model="antesala.titulo" placeholder="ejemplo: Reunión importante!" min="{{titulosMin}}" value="{{antesala.titulo}} required" required>
-        <div ng-show="crearantesala.titulo.$dirty && crearantesala.titulo.$invalid">
-          <p class="help-block text-danger" ng-show="crearantesala.titulo.$error.required">Obligatorio</p>
+    <form role="form" name="crearservicios">
+      <div class="form-group" ng-class="{'has-error': crearservicios.noNota.$invalid, 'has-default':crearservicios.noNota.$valid}">
+        <label for="noNota">Número de nota</label>
+        <input type="text" class="form-control" name="noNota" id="noNota" ng-model="servicios.noNota" placeholder="ejemplo: Reunión importante!" min="{{noNotasMin}}" value="{{servicios.noNota}} required" required>
+        <div ng-show="crearservicios.noNota.$dirty && crearservicios.noNota.$invalid">
+          <p class="help-block text-danger" ng-show="crearservicios.noNota.$error.required">Obligatorio</p>
         </div>
       </div>
-      <div class="form-group" ng-class="{'has-error': crearantesala.fecha.$invalid, 'has-default':crearantesala.fecha.$valid}">
-        <label for="fecha">Fecha muestra</label>
-        <input type="date" min="1996-05-23" class="form-control" name="fecha" id="fecha" ng-model="antesala.fecha" min="{{fechasMin}}" value="{{antesala.fecha}}" required>
-        <div ng-show="crearantesala.fecha.$dirty && crearantesala.fecha.$invalid">
-          <p class="help-block text-danger" ng-show="crearantesala.fecha.$error.required">Obligatorio</p>
-        </div>
-      <div class="form-group" ng-class="{'has-error': crearantesala.antesala.$invalid, 'has-default':crearantesala.antesala.$valid}">
-        <label for="creador">creador </label>
-        <select class="form-control" name="creador" id="creador" ng-model="antesala.creador" ng-options="formulario.creador for formulario in formulariocreador" required></select>
-        <div ng-show="crearantesala.antesala.$dirty && crearantesala.antesala.$invalid">
-          <p class="help-block text-danger" ng-show="crearantesala.antesala.$error.required">Obligatorio</p>
+      <div class="form-group" ng-class="{'has-error': crearservicios.identificador.$invalid, 'has-default':crearservicios.identificador.$valid}">
+        <label for="identificador">Identificación</label>
+        <input type="text" class="form-control" name="identificador" id="identificador" ng-model="servicios.identificador" placeholder="ejemplo: Reunión importante!" min="{{identificadorsMin}}" value="{{servicios.identificador}} required" required>
+        <div ng-show="crearservicios.identificador.$dirty && crearservicios.identificador.$invalid">
+          <p class="help-block text-danger" ng-show="crearservicios.identificador.$error.required">Obligatorio</p>
         </div>
       </div>
-      <div class="form-group" ng-class="{'has-error': crearantesala.mensaje.$invalid, 'has-default':crearantesala.mensaje.$valid}">
-        <label for="mensaje">Mensaje</label>
-        <input type="text" class="form-control" name="mensaje" id="mensaje" ng-model="antesala.mensaje" placeholder="ejemplo: Hoy reunión importante sobre el seguimiento a los servicios prestados." required>
-        <div ng-show="crearantesala.mensaje.$dirty && crearantesala.mensaje.$invalid">
-          <p class="help-block text-danger" ng-show="crearantesala.mensaje.$error.required">Obligatorio</p>
-          <p class="help-block text-danger" ng-show="crearantesala.mensaje.$error.text">Invalido</p>
+      <div class="form-group" ng-class="{'has-error': crearservicios.nombres.$invalid, 'has-default':crearservicios.nombres.$valid}">
+        <label for="nombres">Nombres</label>
+        <input type="text" class="form-control" name="nombres" id="nombres" ng-model="servicios.nombres" placeholder="ejemplo: Reunión importante!" min="{{nombressMin}}" value="{{servicios.nombres}} required" required>
+        <div ng-show="crearservicios.nombres.$dirty && crearservicios.nombres.$invalid">
+          <p class="help-block text-danger" ng-show="crearservicios.nombres.$error.required">Obligatorio</p>
         </div>
       </div>
-      <button popover-placement="top" popover="El mensaje ha sido creado correctamente" class="btn btn-primary" ng-disabled="crearantesala.$invalid" ng-click="enviar()">Crear</button>
+      <div class="form-group" ng-class="{'has-error': crearservicios.direccion.$invalid, 'has-default':crearservicios.direccion.$valid}">
+        <label for="direccion">Dirección</label>
+        <input type="text" class="form-control" name="direccion" id="direccion" ng-model="servicios.direccion" placeholder="ejemplo: Reunión importante!" min="{{direccionsMin}}" value="{{servicios.direccion}} required" required>
+        <div ng-show="crearservicios.direccion.$dirty && crearservicios.direccion.$invalid">
+          <p class="help-block text-danger" ng-show="crearservicios.direccion.$error.required">Obligatorio</p>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': crearservicios.telefono.$invalid, 'has-default':crearservicios.telefono.$valid}">
+        <label for="telefono">Teléfono</label>
+        <input type="text" class="form-control" name="telefono" id="telefono" ng-model="servicios.telefono" placeholder="ejemplo: Reunión importante!" min="{{telefonosMin}}" value="{{servicios.telefono}} required" required>
+        <div ng-show="crearservicios.telefono.$dirty && crearservicios.telefono.$invalid">
+          <p class="help-block text-danger" ng-show="crearservicios.telefono.$error.required">Obligatorio</p>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': crearservicios.tipoEntrega.$invalid, 'has-default':crearservicios.tipoEntrega.$valid}">
+        <label for="tipoEntrega">Tipo de entrega</label>
+        <input type="text" class="form-control" name="tipoEntrega" id="tipoEntrega" ng-model="servicios.tipoEntrega" placeholder="ejemplo: Reunión importante!" min="{{tipoEntregasMin}}" value="{{servicios.tipoEntrega}} required" required>
+        <div ng-show="crearservicios.tipoEntrega.$dirty && crearservicios.tipoEntrega.$invalid">
+          <p class="help-block text-danger" ng-show="crearservicios.tipoEntrega.$error.required">Obligatorio</p>
+        </div>
+      </div>      
+      <div class="form-group" ng-class="{'has-error': crearservicios.fechaEntrega.$invalid, 'has-default':crearservicios.fechaEntrega.$valid}">
+        <label for="fechaEntrega">Fecha de entrega</label>
+        <input type="date" min="1996-05-23" class="form-control" name="fechaEntrega" id="fechaEntrega" ng-model="servicios.fechaEntrega" min="{{fechaEntregasMin}}" value="{{servicios.fechaEntrega}}" required>
+        <div ng-show="crearservicios.fechaEntrega.$dirty && crearservicios.fechaEntrega.$invalid">
+          <p class="help-block text-danger" ng-show="crearservicios.fechaEntrega.$error.required">Obligatorio</p>
+        </div>
+      </div>      
+      <div class="form-group" ng-class="{'has-error': crearservicios.horaEntrega.$invalid, 'has-default':crearservicios.horaEntrega.$valid}">
+        <label for="horaEntrega">Hora de entrega</label>
+        <input type="time" min="1996-05-23" class="form-control" name="horaEntrega" id="horaEntrega" ng-model="servicios.horaEntrega" min="06:00" value="{{servicios.horaEntrega}}" placeholder="HH:mm" required>
+        <div ng-show="crearservicios.horaEntrega.$dirty && crearservicios.horaEntrega.$invalid">
+          <p class="help-block text-danger" ng-show="crearservicios.horaEntrega.$error.required">Obligatorio</p>
+          <p class="help-block text-danger" ng-show="crearservicios.horaEntrega.$error.valid">Hora</p>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': crearservicios.Estado.$invalid, 'has-default':crearservicios.Estado.$valid}">
+        <label for="Estado">Estado</label>
+        <input type="text" class="form-control" name="Estado" id="Estado" ng-model="servicios.Estado" placeholder="ejemplo: Reunión importante!" min="{{EstadosMin}}" value="{{servicios.Estado}} required" required>
+        <div ng-show="crearservicios.Estado.$dirty && crearservicios.Estado.$invalid">
+          <p class="help-block text-danger" ng-show="crearservicios.Estado.$error.required">Obligatorio</p>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': crearservicios.descripcion.$invalid, 'has-default':crearservicios.descripcion.$valid}">
+        <label for="descripcion">Descripción</label>
+        <input type="text" class="form-control" name="descripcion" id="descripcion" ng-model="servicios.descripcion" placeholder="ejemplo: Reunión importante!" min="{{descripcionsMin}}" value="{{servicios.descripcion}} required" required>
+        <div ng-show="crearservicios.descripcion.$dirty && crearservicios.descripcion.$invalid">
+          <p class="help-block text-danger" ng-show="crearservicios.descripcion.$error.required">Obligatorio</p>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': crearservicios.observaciones.$invalid, 'has-default':crearservicios.observaciones.$valid}">
+        <label for="observaciones">Observaciones</label>
+        <input type="text" class="form-control" name="observaciones" id="observaciones" ng-model="servicios.observaciones" placeholder="ejemplo: Reunión importante!" min="{{observacionessMin}}" value="{{servicios.observaciones}} required" required>
+        <div ng-show="crearservicios.observaciones.$dirty && crearservicios.observaciones.$invalid">
+          <p class="help-block text-danger" ng-show="crearservicios.observaciones.$error.required">Obligatorio</p>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': crearservicios.tiempoEsperadoEjecucion.$invalid, 'has-default':crearservicios.tiempoEsperadoEjecucion.$valid}">
+        <label for="tiempoEsperadoEjecucion">Tiempo esperado</label>
+        <input type="text" class="form-control" name="tiempoEsperadoEjecucion" id="tiempoEsperadoEjecucion" ng-model="servicios.tiempoEsperadoEjecucion" placeholder="ejemplo: Reunión importante!" min="{{tiempoEsperadoEjecucionsMin}}" value="{{servicios.tiempoEsperadoEjecucion}} required" required>
+        <div ng-show="crearservicios.tiempoEsperadoEjecucion.$dirty && crearservicios.tiempoEsperadoEjecucion.$invalid">
+          <p class="help-block text-danger" ng-show="crearservicios.tiempoEsperadoEjecucion.$error.required">Obligatorio</p>
+        </div>
+      </div>
+      <button popover-placement="top" popover="El mensaje ha sido creado correctamente" class="btn btn-primary" ng-disabled="crearservicios.$invalid" ng-click="enviar()">Crear</button>
     </form>
   </div>
 </div>

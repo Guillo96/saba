@@ -24,7 +24,7 @@ angular.module('icbf', ['Parse','ui.bootstrap', 'ngRoute', 'controllers'])
 })
 
 .run(function($location, Parse, $rootScope) {
-	
+	//
 })
 
 .config(function(ParseProvider,$routeProvider, $locationProvider){

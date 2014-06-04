@@ -2,30 +2,30 @@
   <div class="panel-heading">
     <h4>Servicios</h4>
     <form >
-        <div class="row">
-          <div class="col-lg-10">
-            <div class="input-group">
-              <input name="k" type="text" class="form-control" placeholder="Buscar " ng-model="buscar" >
-              <span class="input-group-addon">
-                <i class="glyphicon glyphicon-search" ng-click="buscar()"></i>
-              </span>
-            </div>
-          </div>
-        </div>                            
-      </form>
       <div class="row">
-        <div class="col-lg-12">
-          <a class="btn btn-success" href="#/admin/servicios/crear"><i class="glyphicon glyphicon-plus"></i> agregar</a>
-          <span ng-show="sel == 1">
-            <button class="btn btn-default" ng-click="actualizar()">
-                <i class="glyphicon glyphicon-pencil"></i> actualizar
-              </button>
-          </span>
-          <span ng-show="sel">
-            <button class="btn btn-danger" ng-click="eliminar()"><i class="glyphicon glyphicon-minus"></i> eliminar</button>
-          </span>
+        <div class="col-lg-10">
+          <div class="input-group">
+            <input name="k" type="text" class="form-control" placeholder="Buscar " ng-model="buscar" >
+            <span class="input-group-addon">
+              <i class="glyphicon glyphicon-search" ng-click="buscar()"></i>
+            </span>
+          </div>
         </div>
+      </div>                            
+    </form>
+    <div class="row">
+      <div class="col-lg-12">
+        <a class="btn btn-success" href="#/admin/servicios/crear"><i class="glyphicon glyphicon-plus"></i> agregar</a>
+        <span ng-show="sel == 1">
+          <button class="btn btn-default" ng-click="actualizar()">
+              <i class="glyphicon glyphicon-pencil"></i> actualizar
+            </button>
+        </span>
+        <span ng-show="sel">
+          <button class="btn btn-danger" ng-click="eliminar()"><i class="glyphicon glyphicon-minus"></i> eliminar</button>
+        </span>
       </div>
+    </div>
   </div>
   <div class="panel-body">
     <div class="table-responsive">
@@ -33,11 +33,18 @@
         <thead>
           <tr class="text-default">
             <th></th>
-            <th> Código</th>
-            <th> Título</th>  
-            <th> Fecha</th>
-            <th> Creador</th>
-            <th> Mensaje</th>
+            <th> No. Nota</th>
+            <th> Identficador</th>  
+            <th> Nombres</th>
+            <th> Dirección</th>
+            <th> Teléfonos</th>
+            <th> Tipo de entrega</th>
+            <th> Fecha de entrega</th>
+            <th> Hora de entrega</th>
+            <th> Estado</th>
+            <th> Descripción</th>
+            <th> Observaciones</th>
+            <th> Duración de ejecución</th>
           </tr>
         </thead>
         <tbody>
@@ -45,11 +52,18 @@
             <td>
               <input type="checkbox" ng-model="obj.seleccionado">
             </td>
-            <td>{{obj.codigo}}</td>
-            <td>{{obj.titulo}}</td>
-            <td>{{obj.fecha}}</td>
-            <td>{{obj.creador}}</td>
-            <td>{{obj.mensaje}}</td>
+            <td>{{obj.noNota}}</td>
+            <td>{{obj.identificadorC}}</td>  
+            <td>{{obj.nombresC}}</td>
+            <td>{{obj.direccionC}}</td>
+            <td>{{obj.telefonoC}}</td>
+            <td>{{obj.tipoEntrega}}</td>
+            <td>{{obj.fechaEntrega}}</td>
+            <td>{{obj.horaEntrega}}</td>
+            <td>{{obj.estado}}</td>
+            <td>{{obj.descripcion}}</td>
+            <td>{{obj.observaciones}}</td>
+            <td>{{obj.tiempoEsperadoEjecucion}}</td>
           </tr>
         </tbody>
       </table>

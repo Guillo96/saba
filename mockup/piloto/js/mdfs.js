@@ -576,32 +576,46 @@ angular.module('mdfs', ['ui.bootstrap', 'ngRoute'])
 	return {
 		objetos: [
 			{
-				codigo:'3',
-				titulo:'Llevar uniforme',
-				fecha:'20-03-2014',
-				creador:'John',
-				mensaje:'mensajex'
+				noNota:'42-87597',
+				identificadorC:'43427409',
+				nombresC:'MARIA VICTORIA MUÑOZ',
+				direccionC:'CL 113 # 51A - 36',
+				telefonoC:'2361396 - 3207874821 - 3173497109',
+				tipoEntrega:'instalación sin producto',
+				fechaEntrega:'22-06-2014',
+				horaEntrega:'16:30',
+				estado:'entregado completo',
+				descripcion:'armado de mueble desde $',
+				observaciones:'no hay',
+				tiempoEsperadoEjecucion:'1 hora'
 			},
 			{
-				codigo:'4',
-				titulo:'Un técnico bien presentado',
-				fecha:'27-03-2014',
-				creador:'John',
-				mensaje:'Un técnico bien presentado significa un servicio mas agradable'
+				noNota:'44-36792',
+				identificadorC:'42884193',
+				nombresC:'YOLANDA SANDOVAL',
+				direccionC:'CR 45 H NO 40 A SUR 31',
+				telefonoC:'3314788 - 3146417736',
+				tipoEntrega:'instalación sin producto',
+				fechaEntrega:'22-06-2014',
+				horaEntrega:'16:30',
+				estado:'entregado completo',
+				descripcion:'armado de mueble desde $',
+				observaciones:'no hay',
+				tiempoEsperadoEjecucion:'1:30 minutos'
 			},
 			{
-				codigo:'5',
-				titulo:'Ya consignamos',
-				fecha:'4-04-2014',
-				creador:'John',
-				mensaje:'No olvide reclamar su pago'
-			},
-			{
-				codigo:'6',
-				titulo:'Reunión urgente!',
-				fecha:'11-04-2014',
-				creador:'John',
-				mensaje:'Por favor asistir a la reunión del 1 de Mayo en la oficina ppal'
+				noNota:'44-36776',
+				identificadorC:'63451215',
+				nombresC:'ADRIANA FUENTES',
+				direccionC:'CL 39 B SUR 36 44 AP 501',
+				telefonoC:'3157027585-3154151453',
+				tipoEntrega:'domicilios',
+				fechaEntrega:'22-06-2014',
+				horaEntrega:'16:30',
+				estado:'entregado completo',
+				descripcion:'armado de mueble desde $',
+				observaciones:'',
+				tiempoEsperadoEjecucion:''
 			}
 		],
 		formulariocreador: [
@@ -618,9 +632,9 @@ angular.module('mdfs', ['ui.bootstrap', 'ngRoute'])
 		actualiza: {}
 	};
 })
-.controller('serviciosCtrlCRUD',function($scope, $route, $routeParams, $location,$filter,us,antesalaF){
+.controller('serviciosCtrlCRUD',function($scope, $route, $routeParams, $location,$filter,us,serviciosF){
 	
-	$scope.objetos = antesalaF.objetos;
+	$scope.objetos = serviciosF.objetos;
 	var acciones = [];
 	$scope.$watch( "objetos" , function(n,o){
 	    var trues = $filter("filter")( n , {seleccionado:true} );
@@ -628,7 +642,6 @@ angular.module('mdfs', ['ui.bootstrap', 'ngRoute'])
 	    	if(acciones.length > 0){
 	    		acciones = [];
 	    	}
-	    	console.log(acciones.length);
 	    	angular.forEach(trues,function(f){
 	    		acciones.push(f);
 	    	});
@@ -640,10 +653,9 @@ angular.module('mdfs', ['ui.bootstrap', 'ngRoute'])
 
 	$scope.eliminar = function(){
 		angular.forEach(acciones,function(f){
-    		//mensaje
     		var index = $scope.objetos.indexOf(f);
         	$scope.objetos.splice(index, 1);
-        	antesalaF.objetos  = $scope.objetos;
+        	serviciosF.objetos  = $scope.objetos;
     	});
 	};
 
@@ -652,41 +664,56 @@ angular.module('mdfs', ['ui.bootstrap', 'ngRoute'])
 	};
 
 	$scope.actualizar = function(){
-		antesalaF.actualiza = {
-			codigo:acciones[0].codigo,
-			titulo:acciones[0].titulo,
-			fecha:acciones[0].fecha,
-			mensaje:acciones[0].mensaje
-		}
-      	$location.path('/admin/antesala/actualizar');
+		serviciosF.actualiza = {
+			noNota:acciones[0].noNota,
+			identificadorC:acciones[0].identificadorC,
+			nombresC:acciones[0].nombresC,
+			direccionC:acciones[0].direccionC,
+			telefonoC:acciones[0].telefonoC,
+			tipoEntrega:acciones[0].tipoEntrega,
+			fechaEntrega:acciones[0].fechaEntrega,
+			horaEntrega:acciones[0].horaEntrega,
+			estado:acciones[0].estado,
+			descripcion:acciones[0].descripcion,
+			observaciones:acciones[0].observaciones,
+			tiempoEsperadoEjecucion:acciones[0].tiempoEsperadoEjecucion
+	}
+      	$location.path('/admin/servicios/actualizar');
 	}
 })
-.controller('serviciosCrearCtrlCRUD',function($scope, $route, $routeParams, $location,$timeout,us,antesalaF){
-	$scope.formulariocreador = antesalaF.formulariocreador;
+.controller('serviciosCrearCtrlCRUD',function($scope, $route, $routeParams, $location,$timeout,us,serviciosF){
+	$scope.formulariocreador = serviciosF.formulariocreador;
 	$scope.enviar = function(){
 		$timeout(function() {
-			$location.path('/admin/antesala');
+			$location.path('/admin/servicios');
 		}, 7000);	
 	};
 })
-.controller('serviciosActualizarCtrlCRUD',function($scope, $route, $routeParams, $location,$timeout,us,antesalaF){
-	$scope.antesala = antesalaF.actualiza;
-	$scope.formulariocreador = antesalaF.formulariocreador;
+.controller('serviciosActualizarCtrlCRUD',function($scope, $route, $routeParams, $location,$timeout,us,serviciosF){
+	$scope.servicios = serviciosF.actualiza;
+	$scope.formulariocreador = serviciosF.formulariocreador;
 	$scope.actualizar = function(){
-    	for (var i = antesalaF.objetos.length - 1; i >= 0; i--) {
-    		if(antesalaF.objetos[i].codigo == $scope.antesala.codigo){
-    			antesalaF.objetos.splice(i,1);
+    	for (var i = serviciosF.objetos.length - 1; i >= 0; i--) {
+    		if(serviciosF.objetos[i].noNota == $scope.servicios.noNota){
+    			//serviciosF.objetos.splice(i,1);
+    			serviciosF.objetos[i].identificadorC = $scope.servicios.identificadorC;
+				serviciosF.objetos[i].nombresC = $scope.servicios.nombresC;
+				serviciosF.objetos[i].direccionC = $scope.servicios.direccionC;
+				serviciosF.objetos[i].telefonoC = $scope.servicios.telefonoC;
+				serviciosF.objetos[i].tipoEntrega = $scope.servicios.tipoEntrega;
+				serviciosF.objetos[i].fechaEntrega = $scope.servicios.fechaEntrega;
+				serviciosF.objetos[i].horaEntrega = $scope.servicios.horaEntrega;
+				serviciosF.objetos[i].estado = $scope.servicios.estado;
+				serviciosF.objetos[i].descripcion = $scope.servicios.descripcion;
+				serviciosF.objetos[i].observaciones = $scope.servicios.observaciones;
+				serviciosF.objetos[i].tiempoEsperadoEjecucion  = $scope.servicios.tiempoEsperadoEjecucion;
     		}
     	};
-    	antesalaF.objetos.push({
-    		codigo:$scope.antesala.codigo,
-			titulo:$scope.antesala.titulo,
-			fecha:$scope.antesala.fecha,
-			creador:$scope.antesala.creador.creador,
-			mensaje:$scope.antesala.mensaje
-    	});
+    	//serviciosF.objetos.push({
+    	//	noNota:$scope.servicios.noNota,
+    	//});
 		$timeout(function(){
-			$location.path('/admin/antesala');	
+			$location.path('/admin/servicios');	
 		},6000);
 
 	};
