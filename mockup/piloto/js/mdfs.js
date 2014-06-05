@@ -1,4 +1,4 @@
-angular.module('mdfs', ['ui.bootstrap', 'ngRoute'])
+angular.module('mdfs', ['ui.bootstrap', 'ngRoute'])//, 'dialog'
 
 .controller('ppalCtrl', function($scope, $route, $routeParams, $location,menus){
 	$scope.route = $route;
@@ -171,6 +171,10 @@ angular.module('mdfs', ['ui.bootstrap', 'ngRoute'])
 			templateUrl:'plantillas/tecnico/historico.html',
 			controller:'historicoTecCtrl'
 		})
+		.when('/tecnico/mapa',{
+			templateUrl:'plantillas/tecnico/mapa.html',
+			controller:'mapaCtrl'
+		})
 		.otherwise({
 			redirectTo: '/'//plantillas/dashboard.html
 		});
@@ -332,6 +336,7 @@ angular.module('mdfs', ['ui.bootstrap', 'ngRoute'])
 .controller('tecnicoCtrl',function($scope, $route, $routeParams, $location,us){
 	//$scope.usuario = us.us.us;
 	us.us.us = true;
+	
 })
 .factory('antesalaF',function(){
 	return {
@@ -339,14 +344,14 @@ angular.module('mdfs', ['ui.bootstrap', 'ngRoute'])
 			{
 				codigo:'3',
 				titulo:'Llevar uniforme',
-				fecha:'20-03-2014',
+				fecha:'5-06-2014',
 				creador:'John',
 				mensaje:'mensajex'
 			},
 			{
 				codigo:'4',
 				titulo:'Un técnico bien presentado',
-				fecha:'27-03-2014',
+				fecha:'05-06-2014',
 				creador:'John',
 				mensaje:'Un técnico bien presentado significa un servicio mas agradable'
 			},
@@ -618,15 +623,148 @@ angular.module('mdfs', ['ui.bootstrap', 'ngRoute'])
 				tiempoEsperadoEjecucion:''
 			}
 		],
-		formulariocreador: [
+		objetosHistorico: [
 			{
-				creador:'Joshep Perez'
+				noNota:'42-87597',
+				identificadorC:'43427409',
+				nombresC:'MARIA VICTORIA MUÑOZ',
+				direccionC:'CL 113 # 51A - 36',
+				telefonoC:'2361396 - 3207874821 - 3173497109',
+				tipoEntrega:'instalación sin producto',
+				fechaEntrega:'23-06-2014',
+				horaEntrega:'16:30',
+				estado:'entregado incompleto',
+				descripcion:'armado de mueble desde $',
+				observaciones:'no hay',
+				tiempoEsperadoEjecucion:'1 hora'
 			},
 			{
-				creador:'Dubian M'
+				noNota:'44-36792',
+				identificadorC:'42884193',
+				nombresC:'YOLANDA SANDOVAL',
+				direccionC:'CR 45 H NO 40 A SUR 31',
+				telefonoC:'3314788 - 3146417736',
+				tipoEntrega:'instalación sin producto',
+				fechaEntrega:'24-06-2014',
+				horaEntrega:'16:30',
+				estado:'entregado completo',
+				descripcion:'armado de mueble desde $',
+				observaciones:'no hay',
+				tiempoEsperadoEjecucion:'1:30 minutos'
 			},
 			{
-				creador:'Andrés Herrera'
+				noNota:'42-87597',
+				identificadorC:'43427409',
+				nombresC:'MARIA VICTORIA MUÑOZ',
+				direccionC:'CL 113 # 51A - 36',
+				telefonoC:'2361396 - 3207874821 - 3173497109',
+				tipoEntrega:'instalación sin producto',
+				fechaEntrega:'02-07-2014',
+				horaEntrega:'16:30',
+				estado:'entregado completo',
+				descripcion:'armado de mueble desde $',
+				observaciones:'no hay',
+				tiempoEsperadoEjecucion:'1 hora'
+			},
+			{
+				noNota:'44-36792',
+				identificadorC:'42884193',
+				nombresC:'YOLANDA SANDOVAL',
+				direccionC:'CR 45 H NO 40 A SUR 31',
+				telefonoC:'3314788 - 3146417736',
+				tipoEntrega:'instalación sin producto',
+				fechaEntrega:'10-03-2014',
+				horaEntrega:'16:30',
+				estado:'armado completo',
+				descripcion:'armado de mueble desde $',
+				observaciones:'no hay',
+				tiempoEsperadoEjecucion:'1:30 minutos'
+			},
+			{
+				noNota:'42-87597',
+				identificadorC:'43427409',
+				nombresC:'MARIA VICTORIA MUÑOZ',
+				direccionC:'CL 113 # 51A - 36',
+				telefonoC:'2361396 - 3207874821 - 3173497109',
+				tipoEntrega:'instalación sin producto',
+				fechaEntrega:'22-06-2014',
+				horaEntrega:'16:30',
+				estado:'entregado completo',
+				descripcion:'armado de mueble desde $',
+				observaciones:'no hay',
+				tiempoEsperadoEjecucion:'1 hora'
+			},
+			{
+				noNota:'44-36792',
+				identificadorC:'42884193',
+				nombresC:'YOLANDA SANDOVAL',
+				direccionC:'CR 45 H NO 40 A SUR 31',
+				telefonoC:'3314788 - 3146417736',
+				tipoEntrega:'instalación sin producto',
+				fechaEntrega:'22-06-2014',
+				horaEntrega:'16:30',
+				estado:'entregado completo',
+				descripcion:'armado de mueble desde $',
+				observaciones:'no hay',
+				tiempoEsperadoEjecucion:'1:30 minutos'
+			},
+			{
+				noNota:'44-36776',
+				identificadorC:'63451215',
+				nombresC:'ADRIANA FUENTES',
+				direccionC:'CL 39 B SUR 36 44 AP 501',
+				telefonoC:'3157027585-3154151453',
+				tipoEntrega:'domicilios',
+				fechaEntrega:'22-06-2014',
+				horaEntrega:'16:30',
+				estado:'entregado completo',
+				descripcion:'armado de mueble desde $',
+				observaciones:'',
+				tiempoEsperadoEjecucion:''
+			},
+			{
+				noNota:'44-36792',
+				identificadorC:'42884193',
+				nombresC:'YOLANDA SANDOVAL',
+				direccionC:'CR 45 H NO 40 A SUR 31',
+				telefonoC:'3314788 - 3146417736',
+				tipoEntrega:'instalación sin producto',
+				fechaEntrega:'22-06-2014',
+				horaEntrega:'16:30',
+				estado:'entregado completo',
+				descripcion:'armado de mueble desde $',
+				observaciones:'no hay',
+				tiempoEsperadoEjecucion:'1:30 minutos'
+			},
+			{
+				noNota:'44-36776',
+				identificadorC:'63451215',
+				nombresC:'ADRIANA FUENTES',
+				direccionC:'CL 39 B SUR 36 44 AP 501',
+				telefonoC:'3157027585-3154151453',
+				tipoEntrega:'domicilios',
+				fechaEntrega:'22-06-2014',
+				horaEntrega:'16:30',
+				estado:'entregado completo',
+				descripcion:'armado de mueble desde $',
+				observaciones:'',
+				tiempoEsperadoEjecucion:''
+			}
+		],
+		formulariotipoEntrega: [
+			{
+				tipoEntrega:'Instalación sin producto'
+			},
+			{
+				tipoEntrega:'Domicilios'
+			}
+		],
+		formularioEstado: [
+			{
+				estado:'Entregado completo'
+			},
+			{
+				estado:'Mercancía completa grabada y alistada'
 			}
 		],
 		actualiza: {}
@@ -682,7 +820,9 @@ angular.module('mdfs', ['ui.bootstrap', 'ngRoute'])
 	}
 })
 .controller('serviciosCrearCtrlCRUD',function($scope, $route, $routeParams, $location,$timeout,us,serviciosF){
-	$scope.formulariocreador = serviciosF.formulariocreador;
+	
+	$scope.formulariotipoEntrega = serviciosF.formulariotipoEntrega;
+	$scope.formularioEstado = serviciosF.formularioEstado;
 	$scope.enviar = function(){
 		$timeout(function() {
 			$location.path('/admin/servicios');
@@ -690,8 +830,10 @@ angular.module('mdfs', ['ui.bootstrap', 'ngRoute'])
 	};
 })
 .controller('serviciosActualizarCtrlCRUD',function($scope, $route, $routeParams, $location,$timeout,us,serviciosF){
+	$scope.formulariotipoEntrega = serviciosF.formulariotipoEntrega;
+	$scope.formularioEstado = serviciosF.formularioEstado;
 	$scope.servicios = serviciosF.actualiza;
-	$scope.formulariocreador = serviciosF.formulariocreador;
+	
 	$scope.actualizar = function(){
     	for (var i = serviciosF.objetos.length - 1; i >= 0; i--) {
     		if(serviciosF.objetos[i].noNota == $scope.servicios.noNota){
@@ -700,24 +842,29 @@ angular.module('mdfs', ['ui.bootstrap', 'ngRoute'])
 				serviciosF.objetos[i].nombresC = $scope.servicios.nombresC;
 				serviciosF.objetos[i].direccionC = $scope.servicios.direccionC;
 				serviciosF.objetos[i].telefonoC = $scope.servicios.telefonoC;
-				serviciosF.objetos[i].tipoEntrega = $scope.servicios.tipoEntrega;
+				serviciosF.objetos[i].tipoEntrega = $scope.servicios.tipoEntrega.tipoEntrega;
 				serviciosF.objetos[i].fechaEntrega = $scope.servicios.fechaEntrega;
 				serviciosF.objetos[i].horaEntrega = $scope.servicios.horaEntrega;
-				serviciosF.objetos[i].estado = $scope.servicios.estado;
+				serviciosF.objetos[i].estado = $scope.servicios.estado.estado;
 				serviciosF.objetos[i].descripcion = $scope.servicios.descripcion;
 				serviciosF.objetos[i].observaciones = $scope.servicios.observaciones;
 				serviciosF.objetos[i].tiempoEsperadoEjecucion  = $scope.servicios.tiempoEsperadoEjecucion;
     		}
     	};
-    	//serviciosF.objetos.push({
-    	//	noNota:$scope.servicios.noNota,
-    	//});
 		$timeout(function(){
 			$location.path('/admin/servicios');	
 		},6000);
 
 	};
-}).factory('tecnicosF',function(){
+   //  	antesalaF.objetos.push({
+   //  		codigo:$scope.antesala.codigo,
+			// titulo:$scope.antesala.titulo,
+			// fecha:$scope.antesala.fecha,
+			// creador:$scope.antesala.creador.creador,
+			// mensaje:$scope.antesala.mensaje
+   //  	});
+})
+.factory('tecnicosF',function(){
 	return {
 		objetos: [
 			{
@@ -815,19 +962,245 @@ angular.module('mdfs', ['ui.bootstrap', 'ngRoute'])
 })
 //
 //tecnico
-.controller('serviciosTecCtrl',function($scope, $route, $routeParams, $location,us){
-	//
+.factory('tecnicosFTec',function(){
+	return {
+		objetos: [
+		],
+		formulariotipoEntrega: [
+		],
+		formularioEstado: [
+		],
+		direcciones: [
+			{
+				direccion: 'cra'
+			},
+			{
+				direccion: 'cra'
+			},
+			{
+				direccion: 'cra'
+			}
+		]
+	};
 })
-.controller('historicoTecCtrl',function($scope, $route, $routeParams, $location,us){
-	//
-})
-
-.controller('alertasCtrl',function($scope){
-	var promesa = $kinvey.DataStore.find('Eventos');
-	promesa.then(function(Evento){
-		var alerta = muestraRepetidos(Evento);
-		$scope.alertas = alerta;
+.controller('serviciosTecCtrl',function($scope, $route, $routeParams, $location,$filter,$modal,us,tecnicosFTec,serviciosF,antesalaF){
+	//antesala alertas
+	$scope.alerts = [];
+	angular.forEach(antesalaF.objetos,function(antesala){
+		if(antesala.fecha == '05-06-2014' || antesala.fecha == '5-06-2014'){
+			$scope.alerts.push(
+				{msg:antesala.titulo,type:'danger'}
+			);
+		}
 	});
+	$scope.closeAlert = function(index) {
+		$scope.alerts.splice(index, 1);
+	};
+	//
+	tecnicosFTec.objetos = serviciosF.objetos;
+	tecnicosFTec.formulariotipoEntrega = serviciosF.formulariotipoEntrega;
+	tecnicosFTec.formularioEstado = serviciosF.formularioEstado;
+	tecnicosFTec.actualiza = serviciosF.actualiza;
+	$scope.orden = '-horaEntrega';
+	$scope.tabs = [
+		{title:'Servicios',content:'',active:true},
+		{title:'Historico',content:''},
+		{title:'Antesala',content:''}
+	];
+	
+	$scope.fechaActual = new Date();
+	$scope.objetos = tecnicosFTec.objetos;
+
+	$scope.imprimir = function(){
+		contenido = $$('listaServicios').innerHTML;
+		popup = window.open('','_blank');
+		popup.document.open();
+		popup.document.write(
+			'<html>'+
+			'<style type="text/css" media="print">'+
+			'@page { size: landscape; }'+
+			'</style>'+
+			'<body onload="window.print()">'+
+			contenido +
+			'</html>'
+		);
+		popup.document.close();
+	}
+	$scope.guardar = function(){
+		contenido = $$('listaServicios').innerHTML;
+		popup = window.open('','_blank');
+		popup.document.open();
+		popup.document.write(
+			'<html>'+
+			'<style type="text/css" media="print">'+
+			'@page { size: landscape; }'+
+			'</style>'+
+			'<body >'+
+			contenido +
+			'</html>'
+		);
+		popup.document.close();
+	}
+	
+	var acciones = [];
+	
+	$scope.$watch( "objetos" , function(n,o){
+	    var trues = $filter("filter")( n , {seleccionado:true} );
+	    try{
+	    	if(acciones.length > 0){
+	    		acciones = [];
+	    	}
+	    	angular.forEach(trues,function(f){
+	    		acciones.push(f);
+	    	});
+	    	$scope.sel = trues.length;
+	    }catch(e){
+	    	//
+	    }
+    }, true );
+
+	// $scope.eliminar = function(){
+	// 	angular.forEach(acciones,function(f){
+	//    		var index = $scope.objetos.indexOf(f);
+	//        	$scope.objetos.splice(index, 1);
+	//        	serviciosF.objetos  = $scope.objetos;
+	//    	});
+	// };
+
+    $scope.buscarCentro =  function(){
+		//	$scope.objetos = Datos;
+	};
+
+	$scope.direccionM = ['xy','cra 123'];
+	
+	$scope.verMapa = function(){
+		direccion = acciones[0].noNota;
+		var modalInstance = $modal.open({
+			templateUrl: '/plantillas/tecnico/mapa.html',//plantillas/tecnico/mapa.html
+			controller:'mapaCtrl',
+			size: 'lg',
+			resolve: {
+				items: function(){
+					return $scope.direccionM;
+				}
+			}
+		});
+		modalInstance.result.then(function(parametros){
+			//$scope.parametros = parametros;
+			//console.log('cargo modal'+parametros);
+		},function(cerro){
+			console.log('cerro modal '+cerro);
+		});
+  	}
+})
+.controller('mapaCtrl',function($scope,$modalInstance,items){//,data
+	console.log('controlador modal '+items[1]);
+	cargaScript();
+	//console.log($modalInstance);
+	//$scope.items = items;
+	$scope.cancel = function(){
+		$modalInstance.dismiss('cancel');
+	}
+	$scope.listo = function(){
+		$modalInstance.close('close');
+	}
+})
+.controller('historicoTecCtrl',function($scope, $route, $routeParams, $location,$filter,$modal,us,tecnicosFTec,serviciosF){
+	tecnicosFTec.objetosHistorico = serviciosF.objetosHistorico;
+	$scope.fechaActual = new Date();
+	$scope.fechaAnterior = fechaActual(true);
+	$scope.objetosHistorico = tecnicosFTec.objetosHistorico;
+	$scope.orden = '-estado';
+	$scope.cambiarFecha = function($event){
+		$event.preventDefault();
+		$event.stopPropagation();
+		$scope.fechaAbierta = true;	
+	}
+	$scope.cambiarFechaF = function($event){
+		$event.preventDefault();
+		$event.stopPropagation();
+		$scope.fechaAbiertaF = true;	
+	}
+
+	$scope.imprimir = function(){
+		contenido = $$('listaServicios').innerHTML;
+		popup = window.open('','_blank');
+		popup.document.open();
+		popup.document.write(
+			'<html>'+
+			'<style type="text/css" media="print">'+
+			'@page { size: landscape; }'+
+			'</style>'+
+			'<body onload="window.print()">'+
+			contenido +
+			'</html>'
+		);
+		popup.document.close();
+	}
+	$scope.guardar = function(){
+		contenido = $$('listaServicios').innerHTML;
+		popup = window.open('','_blank');
+		popup.document.open();
+		popup.document.write(
+			'<html>'+
+			'<style type="text/css" media="print">'+
+			'@page { size: landscape; }'+
+			'</style>'+
+			'<body >'+
+			contenido +
+			'</html>'
+		);
+		popup.document.close();
+	}
+})
+.controller('alertasCtrl',function($scope, $route, $routeParams, $location,$filter,$modal,us,tecnicosFTec,serviciosF,antesalaF){
+	$scope.objetosA = antesalaF.objetos;
+	tecnicosFTec.objetosHistorico = serviciosF.objetosHistorico;
+	$scope.fechaActual = new Date();
+	$scope.fechaAnterior = fechaActual(true);
+	$scope.objetosHistorico = tecnicosFTec.objetosHistorico;
+	$scope.orden = '-estado';
+	$scope.cambiarFecha = function($event){
+		$event.preventDefault();
+		$event.stopPropagation();
+		$scope.fechaAbierta = true;	
+	}
+	$scope.cambiarFechaF = function($event){
+		$event.preventDefault();
+		$event.stopPropagation();
+		$scope.fechaAbiertaF = true;	
+	}
+
+	$scope.imprimir = function(){
+		contenido = $$('listaServicios').innerHTML;
+		popup = window.open('','_blank');
+		popup.document.open();
+		popup.document.write(
+			'<html>'+
+			'<style type="text/css" media="print">'+
+			'@page { size: landscape; }'+
+			'</style>'+
+			'<body onload="window.print()">'+
+			contenido +
+			'</html>'
+		);
+		popup.document.close();
+	}
+	$scope.guardar = function(){
+		contenido = $$('listaServicios').innerHTML;
+		popup = window.open('','_blank');
+		popup.document.open();
+		popup.document.write(
+			'<html>'+
+			'<style type="text/css" media="print">'+
+			'@page { size: landscape; }'+
+			'</style>'+
+			'<body >'+
+			contenido +
+			'</html>'
+		);
+		popup.document.close();
+	}
 })
 
 .controller('hogaresCtrl', function($scope){
@@ -1558,7 +1931,6 @@ angular.module('mdfs', ['ui.bootstrap', 'ngRoute'])
 	};
 })
 
-
 .factory('tipoeventoFac',function(){
 	return {
 		formulariodepartamento : [
@@ -1712,19 +2084,45 @@ function salir(Parse, $location, $rootScope){
 	    var promise = $kinvey.User.logout();
 	}
 }
-function fechaActual(){
+function fechaActual(anterior){
 	var fecha = new Date();
 	var anio =  fecha.getFullYear().toString();
 	var mes = fecha.getMonth()+1;
 	if(mes<10){
 		mes = '0'+mes;
 	}
+	if(anterior){
+		mes--;	
+	}
 	mes = mes.toString();
 	var dia = fecha.getDate();
 	if(dia<10){
 		dia = '0'+dia;
 	}
-	return anio+'-'+mes+'-'+dia+'T00:00:00.000Z';
+	switch (mes){
+		case '1' || 1:
+			mes = 'ene';
+			break;
+		case '2' || 2:
+			mes = 'feb';
+			break;
+		case '3' || 3:
+			mes = 'mar';
+			break;
+		case '4' || 4:
+			mes = 'abr';
+			break;
+		case '5'  || 5:
+			mes = 'may';
+			break;
+		case '6' || 6:
+			mes = 'jun';
+			break;
+		default:
+			mes = 'may';
+			break;
+	}
+	return mes+' '+dia+', '+anio;//+'T00:00:00.000Z'
 }
 function muestraRepetidos(entidades){
 	var entidadesDocumento = [];

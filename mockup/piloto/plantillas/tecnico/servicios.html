@@ -1,0 +1,260 @@
+<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+<tabset>
+  <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active">
+    {{tab.content}}
+  </tab>
+</tabset>
+<!--Servicios-->
+<div class="panel panel-default" ng-show="tabs[0].active">
+  <div class="panel-heading">
+    <h4>Servicios: {{fechaActual | date: 'mediumDate'}}</h4>
+    <form >
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="input-group">
+            <input name="k" type="text" class="form-control" placeholder="Buscar " ng-model="buscar" >
+            <span class="input-group-addon">
+              <i class="glyphicon glyphicon-search" ng-click="buscar()"></i>
+            </span>
+            <span class="divider"></span>
+            <span class="input-group-btn">
+              <button class="btn btn-default" ng-click="guardar()">
+              <i class="glyphicon glyphicon-save"></i> Guardar
+            </button>
+            </span>
+            <span class="divider"></span>
+            <span class="input-group-btn">
+              <button class="btn btn-primary" ng-click="imprimir()">
+              <i class="glyphicon glyphicon-print"></i> Imprimir
+            </button>
+            </span>
+            <span class="divider"></span>
+          </div>
+        </div>
+      </div>                            
+    </form>
+    <div class="row">
+      <div class="col-lg-12">
+        <span ng-show="sel == 1">
+          <button class="btn btn-default" ng-click="verMapa()">
+              <i class="glyphicon glyphicon-pencil"></i> Ver en mapa
+            </button>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body" id="listaServicios">
+    <div class="table-responsive">
+      <table class="table table-striped table-condensed">
+        <thead>
+          <tr class="row">
+            <th></th>
+            <th> No. Nota</th>
+            <th> Identificación</th>  
+            <th> Nombres</th>
+            <th>
+              <a href="" ng-click="orden = 'direccionC';reverse=!reverse"> Dirección</a>
+            </th>
+            <th> Teléfonos</th>
+            <th> Tipo de entrega</th>
+            <th>
+              <a href="" ng-click="orden = 'horaEntrega';reverse=!reverse"> Hora entrega</a>
+            </th>
+            <th> Estado</th>
+            <th> Descripción</th>
+            <th> Ejecución</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="obj in objetos | filter: buscar | orderBy:orden:reverse" class="row">
+            <td>
+              <input type="checkbox" ng-model="obj.seleccionado">
+            </td>
+            <td>{{obj.noNota}}</td>
+            <td>{{obj.identificadorC}}</td>  
+            <td>{{obj.nombresC}}</td>
+            <td>{{obj.direccionC}}</td>
+            <td>{{obj.telefonoC}}</td>
+            <td>{{obj.tipoEntrega}}</td>
+            <td>{{obj.horaEntrega}}</td>
+            <td>{{obj.estado}}</td>
+            <td>{{obj.descripcion}}</td>
+            <td>{{obj.tiempoEsperadoEjecucion}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<!--historico-->
+<div ng-controller="historicoTecCtrl" class="panel panel-default" ng-show="tabs[1].active">
+  <div class="panel-heading">
+    <h6>Servicios de <span class="text-alert">{{fechaAnterior}} </span>a {{fechaActual | date:  'mediumDate'}}
+      <span class="input-group">
+        <input type="text" class="form-control" datepicker-popup="MM-dd-yyyy" ng-model="fechaAnterior" is-open="fechaAbierta" clear-text="Limpiar" close-text="Listo" current-text="Hoy"></input>
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button" ng-click="cambiarFecha($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+        <input type="text" class="form-control" datepicker-popup="MM-dd-yyyy" ng-model="fechaActual" is-open="fechaAbiertaF" clear-text="Limpiar" close-text="Listo" current-text="Hoy"></input>
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button" ng-click="cambiarFechaF($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+      </span>
+    </h6>
+    <form >
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="input-group">
+            <input name="k" type="text" class="form-control" placeholder="Buscar " ng-model="buscar" >
+            <span class="input-group-addon">
+              <i class="glyphicon glyphicon-search" ng-click="buscar()"></i>
+            </span>
+            <span class="divider"></span>
+            <span class="input-group-btn">
+              <button class="btn btn-default" ng-click="guardar()">
+              <i class="glyphicon glyphicon-save"></i> Guardar
+            </button>
+            </span>
+            <span class="divider"></span>
+            <span class="input-group-btn">
+              <button class="btn btn-primary" ng-click="imprimir()">
+              <i class="glyphicon glyphicon-print"></i> Imprimir
+            </button>
+            </span>
+            <span class="divider"></span>
+          </div>
+        </div>
+      </div>                            
+    </form>
+  </div>
+  <div class="panel-body" id="listaServicios">
+    <div class="table-responsive">
+      <table class="table table-striped table-condensed">
+        <thead>
+          <tr class="row">
+            <th></th>
+            <th>
+              <a href="" nclick="orden='noNota';reverse=!reverse">No. Nota</a>
+            </th>
+            <th>
+              <a href="" ng-click="orden = 'estado';reverse=!reverse"> Estado</a>
+            </th>
+            <th>
+              <a href="" ng-click="orden = 'fecha';reverse=!reverse"> Fecha</a>
+            </th>
+            <th> Hora</th>
+            <th>
+              <a href="" ng-click="orden = 'tipoEntrega';reverse=!reverse">Tipo de entrega</a>
+            </th>
+            <th>
+              <a href="" nclick="orden='tiempoEsperadoEjecucion';reverse=!reverse">Ejecución</a>
+            </th>
+            <th>
+              Descripción</th>
+            <th> Nombres</th>
+            <th> Dirección</th>
+            <th> Teléfonos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="obj in objetosHistorico | filter: buscar | orderBy:orden:reverse" class="row">
+            <td>
+              <input type="checkbox" ng-model="obj.seleccionado">
+            </td>
+            <td>{{obj.noNota}}</td>
+            <td>{{obj.estado}}</td>
+            <td>{{obj.fechaEntrega}}</td>
+            <td>{{obj.horaEntrega}}</td>
+            <td>{{obj.tipoEntrega}}</td>
+            <td>{{obj.tiempoEsperadoEjecucion}}</td>
+            <td>{{obj.descripcion}}</td>
+            <td>{{obj.identificadorC}}</td>  
+            <td>{{obj.nombresC}}</td>
+            <td>{{obj.direccionC}}</td>
+            <td>{{obj.telefonoC}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<!--Antesala-->
+<div ng-controller="alertasCtrl" class="panel panel-default" ng-show="tabs[2].active">
+  <div class="panel-heading">
+    <h4>Nomina y Comunicados</h4>
+    <form >
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="input-group">
+            <input name="k" type="text" class="form-control" placeholder="Buscar " ng-model="buscar" >
+            <span class="input-group-addon">
+              <i class="glyphicon glyphicon-search" ng-click="buscar()"></i>
+            </span>
+            <span class="divider"></span>
+            <span class="input-group-btn">
+              <button class="btn btn-default" ng-click="guardar()">
+              <i class="glyphicon glyphicon-save"></i> Guardar
+            </button>
+            </span>
+            <span class="divider"></span>
+            <span class="input-group-btn">
+              <button class="btn btn-primary" ng-click="imprimir()">
+              <i class="glyphicon glyphicon-print"></i> Imprimir
+            </button>
+            </span>
+            <span class="divider"></span>
+          </div>
+        </div>
+      </div>                            
+    </form>
+    <div class="row">
+      <div class="col-lg-12">
+        <span ng-show="sel == 1">
+          <button class="btn btn-default" ng-click="verMapa()">
+              <i class="glyphicon glyphicon-pencil"></i> Descargar recibo
+            </button>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body" id="listaServicios">
+    <div class="table-responsive">
+      <table class="table table-striped table-condensed">
+        <thead>
+          <tr class="row">
+            <th></th>
+            <th> No. Nota</th>
+            <th> Identificación</th>  
+            <th> Nombres</th>
+            <th> Dirección</th>
+            <th> Teléfonos</th>
+            <th> Tipo de entrega</th>
+            <th> Fecha entrega</th>
+            <th> Hora entrega</th>
+            <th> Estado</th>
+            <th> Descripción</th>
+            <th> Ejecución</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="obj in objetos | filter: buscar" class="row">
+            <td>
+              <input type="checkbox" ng-model="obj.seleccionado">
+            </td>
+            <td>{{obj.noNota}}</td>
+            <td>{{obj.identificadorC}}</td>  
+            <td>{{obj.nombresC}}</td>
+            <td>{{obj.direccionC}}</td>
+            <td>{{obj.telefonoC}}</td>
+            <td>{{obj.tipoEntrega}}</td>
+            <td>{{obj.fechaEntrega}}</td>
+            <td>{{obj.horaEntrega}}</td>
+            <td>{{obj.estado}}</td>
+            <td>{{obj.descripcion}}</td>
+            <td>{{obj.tiempoEsperadoEjecucion}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

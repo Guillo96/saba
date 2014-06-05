@@ -8,7 +8,10 @@ body{
 .usuarioSesion{
 	color: red;
 }
-.menuIzquierdo, .contenido{
+.contenido{
+	height: 100%;
+}
+.menuIzquierdo{
 	height: 100%;
 }
 .menuIzquierdo{
@@ -73,9 +76,6 @@ a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active{
 	font-size: 5em;
 }
 
-.panel-black{
-	border-color:#1C1919;
-}
 .panel-heading1{
 	color:#FFFFFF;
 	background-color:#1C1919;
@@ -94,4 +94,18 @@ a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active{
 		font-size: 1em;
 		color: red;
 	}	
+}
+
+#direccionMapa{
+	height: 60%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 100%;
+}
+/*Fix boostrap 3 con angular ui bootstrap*/        
+.modal {
+	display: block;
+	/*	height: 0;*/
+	overflow: visible;
 }
