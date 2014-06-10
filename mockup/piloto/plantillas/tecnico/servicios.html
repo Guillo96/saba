@@ -7,7 +7,7 @@
 <!--Servicios-->
 <div class="panel panel-default" ng-show="tabs[0].active">
   <div class="panel-heading">
-    <h4>Servicios: {{fechaActual | date: 'mediumDate'}}</h4>
+    <h4>{{fechaActual | date: 'mediumDate'}}</h4>
     <form >
       <div class="row">
         <div class="col-lg-12">
@@ -15,12 +15,6 @@
             <input name="k" type="text" class="form-control" placeholder="Buscar " ng-model="buscar" >
             <span class="input-group-addon">
               <i class="glyphicon glyphicon-search" ng-click="buscar()"></i>
-            </span>
-            <span class="divider"></span>
-            <span class="input-group-btn">
-              <button class="btn btn-default" ng-click="guardar()">
-              <i class="glyphicon glyphicon-save"></i> Guardar
-            </button>
             </span>
             <span class="divider"></span>
             <span class="input-group-btn">
@@ -49,7 +43,6 @@
         <thead>
           <tr class="row">
             <th></th>
-            <th> No. Nota</th>
             <th> Identificación</th>  
             <th> Nombres</th>
             <th>
@@ -60,7 +53,6 @@
             <th>
               <a href="" ng-click="orden = 'horaEntrega';reverse=!reverse"> Hora entrega</a>
             </th>
-            <th> Estado</th>
             <th> Descripción</th>
             <th> Ejecución</th>
           </tr>
@@ -70,14 +62,12 @@
             <td>
               <input type="checkbox" ng-model="obj.seleccionado">
             </td>
-            <td>{{obj.noNota}}</td>
             <td>{{obj.identificadorC}}</td>  
             <td>{{obj.nombresC}}</td>
             <td>{{obj.direccionC}}</td>
             <td>{{obj.telefonoC}}</td>
             <td>{{obj.tipoEntrega}}</td>
             <td>{{obj.horaEntrega}}</td>
-            <td>{{obj.estado}}</td>
             <td>{{obj.descripcion}}</td>
             <td>{{obj.tiempoEsperadoEjecucion}}</td>
           </tr>
@@ -134,12 +124,6 @@
           <tr class="row">
             <th></th>
             <th>
-              <a href="" nclick="orden='noNota';reverse=!reverse">No. Nota</a>
-            </th>
-            <th>
-              <a href="" ng-click="orden = 'estado';reverse=!reverse"> Estado</a>
-            </th>
-            <th>
               <a href="" ng-click="orden = 'fecha';reverse=!reverse"> Fecha</a>
             </th>
             <th> Hora</th>
@@ -161,8 +145,6 @@
             <td>
               <input type="checkbox" ng-model="obj.seleccionado">
             </td>
-            <td>{{obj.noNota}}</td>
-            <td>{{obj.estado}}</td>
             <td>{{obj.fechaEntrega}}</td>
             <td>{{obj.horaEntrega}}</td>
             <td>{{obj.tipoEntrega}}</td>
@@ -223,7 +205,6 @@
         <thead>
           <tr class="row">
             <th></th>
-            <th> No. Nota</th>
             <th> Identificación</th>  
             <th> Nombres</th>
             <th> Dirección</th>
@@ -241,7 +222,6 @@
             <td>
               <input type="checkbox" ng-model="obj.seleccionado">
             </td>
-            <td>{{obj.noNota}}</td>
             <td>{{obj.identificadorC}}</td>  
             <td>{{obj.nombresC}}</td>
             <td>{{obj.direccionC}}</td>

@@ -54,6 +54,7 @@ angular.module('mdfs', ['ui.bootstrap', 'ngRoute'])//, 'dialog'
 			controller:'tecnicoCtrl'
 		})
 		//unitarios por perfil
+		//cruds
 		.when('/dashboard',{
 			templateUrl: 'plantillas/dashboard.html',
 			controller: 'dashboardCtrl'
@@ -62,85 +63,29 @@ angular.module('mdfs', ['ui.bootstrap', 'ngRoute'])//, 'dialog'
 			templateUrl:'plantillas/CRUD/antesala.html',
 			controller:'antesalaCtrlCRUD'
 		})
-		.when('/admin/antesala/actualizar',{
-			templateUrl:'plantillas/CRUD/actualizarantesala.html',
-			controller:'antesalaActualizarCtrlCRUD'
-		})
-		.when('/admin/antesala/crear',{
-			templateUrl:'plantillas/CRUD/crearantesala.html',
-			controller:'antesalaCrearCtrlCRUD'
-		})
 		.when('/admin/catalogo',{
 			templateUrl:'plantillas/CRUD/catalogo.html',
 			controller:'catalogoCtrlCRUD'
-		})
-		.when('/admin/catalogo/actualizar',{
-			templateUrl:'plantillas/CRUD/actualizarcatalogo.html',
-			controller:'catalogoActualizarCtrlCRUD'
-		})
-		.when('/admin/catalogo/crear',{
-			templateUrl:'plantillas/CRUD/crearcatalogo.html',
-			controller:'catalogoCrearCtrlCRUD'
 		})
 		.when('/admin/clientes',{
 			templateUrl:'plantillas/CRUD/clientes.html',
 			controller:'clientesCtrlCRUD'
 		})
-		.when('/admin/clientes/actualizar',{
-			templateUrl:'plantillas/CRUD/actualizarclientes.html',
-			controller:'clientesActualizarCtrlCRUD'
-		})
-		.when('/admin/clientes/crear',{
-			templateUrl:'plantillas/CRUD/crearclientes.html',
-			controller:'clientesCrearCtrlCRUD'
-		})
 		.when('/admin/evidencias',{
 			templateUrl:'plantillas/CRUD/evidencias.html',
 			controller:'evidenciasCtrlCRUD'
-		})
-		.when('/admin/evidencias/actualizar',{
-			templateUrl:'plantillas/CRUD/actualizarevidencias.html',
-			controller:'evidenciasActualizarCtrlCRUD'
-		})
-		.when('/admin/evidencias/crear',{
-			templateUrl:'plantillas/CRUD/crearevidencias.html',
-			controller:'evidenciasCrearCtrlCRUD'
 		})
 		.when('/admin/servicios',{
 			templateUrl:'plantillas/CRUD/servicios.html',
 			controller:'serviciosCtrlCRUD'
 		})
-		.when('/admin/servicios/actualizar',{
-			templateUrl:'plantillas/CRUD/actualizarservicios.html',
-			controller:'serviciosActualizarCtrlCRUD'
-		})
-		.when('/admin/servicios/crear',{
-			templateUrl:'plantillas/CRUD/crearservicios.html',
-			controller:'serviciosCrearCtrlCRUD'
-		})
 		.when('/admin/tecnicos',{
 			templateUrl:'plantillas/CRUD/tecnicos.html',
 			controller:'tecnicosCtrlCRUD'
 		})
-		.when('/admin/tecnicos/actualizar',{
-			templateUrl:'plantillas/CRUD/actualizartecnicos.html',
-			controller:'tecnicosActualizarCtrlCRUD'
-		})
-		.when('/admin/tecnicos/crear',{
-			templateUrl:'plantillas/CRUD/creartecnicos.html',
-			controller:'tecnicosCrearCtrlCRUD'
-		})
 		.when('/admin/zonas',{
 			templateUrl:'plantillas/CRUD/zonas.html',
 			controller:'zonasCtrlCRUD'
-		})
-		.when('/admin/zonas/actualizar',{
-			templateUrl:'plantillas/CRUD/actualizarzonas.html',
-			controller:'zonasActualizarCtrlCRUD'
-		})
-		.when('/admin/zonas/crear',{
-			templateUrl:'plantillas/CRUD/crearzonas.html',
-			controller:'zonasCrearCtrlCRUD'
 		})
 		//reportes
 		.when('/reportes/clientes',{
@@ -384,17 +329,18 @@ angular.module('mdfs', ['ui.bootstrap', 'ngRoute'])//, 'dialog'
 		actualiza: {}
 	};
 })
-.controller('antesalaCtrlCRUD',function($scope, $route, $routeParams, $location,$filter,us,antesalaF){
-	
+.controller('antesalaCtrlCRUD',function($scope, $route, $routeParams, $location,$filter,$modal,us,antesalaF,crearSer){
+	//inicializacion	
 	$scope.objetos = antesalaF.objetos;
 	var acciones = [];
+	
+	//supervision lista
 	$scope.$watch( "objetos" , function(n,o){
 	    var trues = $filter("filter")( n , {seleccionado:true} );
 	    try{
 	    	if(acciones.length > 0){
 	    		acciones = [];
 	    	}
-	    	console.log(acciones.length);
 	    	angular.forEach(trues,function(f){
 	    		acciones.push(f);
 	    	});
@@ -403,19 +349,8 @@ angular.module('mdfs', ['ui.bootstrap', 'ngRoute'])//, 'dialog'
 	    	//
 	    }
     }, true );
-
-	$scope.eliminar = function(){
-		angular.forEach(acciones,function(f){
-    		//mensaje
-    		var index = $scope.objetos.indexOf(f);
-        	$scope.objetos.splice(index, 1);
-        	antesalaF.objetos  = $scope.objetos;
-    	});
-	};
-
-    $scope.buscarCentro =  function(){
-		//	$scope.objetos = Datos;
-	};
+	
+	//metodos
 
 	$scope.actualizar = function(){
 		antesalaF.actualiza = {
@@ -424,37 +359,164 @@ angular.module('mdfs', ['ui.bootstrap', 'ngRoute'])//, 'dialog'
 			fecha:acciones[0].fecha,
 			mensaje:acciones[0].mensaje
 		}
-      	$location.path('/admin/antesala/actualizar');
+		var modalInstance = $modal.open({
+			templateUrl: 'plantillas/CRUD/actualizarantesala.html',
+			controller: 'antesalaActualizarCtrlCRUD as modo',
+			size: 'lg',
+			resolve: {
+				items: function(){
+					return antesalaF.actualiza;
+				}
+			}
+		});
+		modalInstance.result.then(function(parametros){
+			console.log('actualizo antesala');
+		},function(cerro){
+			console.log('cerro actualizar antesala');
+		});
+	}
+    $scope.buscarCentro =  function(){
+		//	$scope.objetos = Datos;
+	}
+	$scope.crear = function(){
+		direccion = 'acciones[0].noNota';
+		var modalInstance = $modal.open({
+			templateUrl: 'plantillas/CRUD/crearantesala.html',
+			controller:'antesalaCrearCtrlCRUD as modo',
+			size: 'lg',
+			resolve: {
+				items: function(){
+					return $scope.direccionM;
+				}
+			}
+		});
+		modalInstance.result.then(function(parametros){
+	    	console.log('guardo antesala');
+	    	//var y = crearSer.crear($scope);
+	    	//console.log(y);
+		},function(cerro){
+			console.log('cerrro crear antesala');
+		});
+  	}
+	$scope.eliminar = function(){
+		angular.forEach(acciones,function(f){
+    		mensaje
+    		var index = $scope.objetos.indexOf(f);
+        	$scope.objetos.splice(index, 1);
+        	antesalaF.objetos  = $scope.objetos;
+    	});
 	}
 })
-.controller('antesalaCrearCtrlCRUD',function($scope, $route, $routeParams, $location,$timeout,us,antesalaF){
-	$scope.formulariocreador = antesalaF.formulariocreador;
-	$scope.enviar = function(){
-		$timeout(function() {
-			$location.path('/admin/antesala');
-		}, 7000);	
-	};
+.service('crearSer',function(antesalaF){
+	this.crear = function(scope){
+		var x = [];
+		angular.forEach(antesalaF,function(a){
+			x.push(a);
+		});
+		angular.forEach(scope.objetos,function(a){
+			console.log(a);
+		});
+		return x;
+	}
 })
-.controller('antesalaActualizarCtrlCRUD',function($scope, $route, $routeParams, $location,$timeout,us,antesalaF){
+.factory('crearFac',function(antesalaF){
+	return {
+		borrar : function(scope){
+			var x = [];
+			angular.forEach(antesalaF,function(a){
+				x.push(a);
+			});
+			angular.forEach(scope.objetos,function(a){
+				console.log(a);
+			});
+			return x;
+		},
+		crear : function(de,para){
+			var x = [];
+			angular.forEach(antesalaF,function(a){
+				//x.push(a);
+			});
+			var tempo = [];
+			// angular.forEach(de,function(v,k){
+			// 	console.log('key: '+k+','+' valor: '+v);
+			// 	if(typeof v == 'object'){
+			// 		angular.forEach(v,function(u,w){
+			// 			console.log('key'+w+','+'valor:'+u);
+			// 			para.push({w:u});
+			// 		});
+			// 	}else{
+			// 		para.push({k:v});
+			// 	}
+			// });
+			parax = function(para,de){
+				for(var prop in de){
+					if(typeof de[prop] === 'object' && de[prop] !== null){
+						para[prop] = para[prop] || {};
+						arguments.callee(para[prop],de[prop]);
+					}else{
+						para[prop] = de[prop];
+					}
+				}
+				return para;
+			}
+			para = parax;
+			
+			angular.forEach(para,function(p,k){
+				console.log(p+','+k);
+			});
+			angular.forEach(para,function(p,k){
+				console.log(p+','+k);
+			});
+			return 'x';
+		},
+	}
+})
+.controller('antesalaCrearCtrlCRUD',function($scope, $timeout,$modalInstance,us,antesalaF,crearFac){
+	$scope.formulariocreador = antesalaF.formulariocreador;
+	//es necesario inicializarla para poderla leer en modal
+	//javascript inherint scope leer en profundidad
+	$scope.antesala = {};
+	$scope.regresar = function(){
+		$modalInstance.dismiss('Regresar');
+	}
+	$scope.enviar = function(){
+		var may = 0;
+		angular.forEach(antesalaF.objetos,function(v){
+    		if(v.codigo > may){
+    			may = v.codigo;
+    		}
+    	});
+    	may++;
+    	//var reg = crearFac.crear($scope.antesala,antesalaF.objetos);
+     	antesalaF.objetos.push({
+     		codigo:may,
+			titulo:$scope.antesala.titulo,
+			fecha:$scope.antesala.fecha,
+			creador:$scope.antesala.creador.creador,
+			mensaje:$scope.antesala.mensaje
+     	});
+    	$timeout(function(){
+    		//mensaje guardado y no cerrar
+    		$modalInstance.close('guardado');	
+    	},500);
+	}
+})
+.controller('antesalaActualizarCtrlCRUD',function($scope,$timeout,$modalInstance,us,antesalaF){
 	$scope.antesala = antesalaF.actualiza;
 	$scope.formulariocreador = antesalaF.formulariocreador;
 	$scope.actualizar = function(){
     	for (var i = antesalaF.objetos.length - 1; i >= 0; i--) {
     		if(antesalaF.objetos[i].codigo == $scope.antesala.codigo){
-    			antesalaF.objetos.splice(i,1);
+    			antesalaF.objetos[i].titulo = $scope.antesala.titulo;
+    			antesalaF.objetos[i].fecha = $scope.antesala.fecha;
+    			antesalaF.objetos[i].creador.creador = $scope.antesala.creador.creador;
+    			antesalaF.objetos[i].mensaje = $scope.antesala.mensaje;
+    			//antesalaF.objetos.splice(i,1);
     		}
     	};
-    	antesalaF.objetos.push({
-    		codigo:$scope.antesala.codigo,
-			titulo:$scope.antesala.titulo,
-			fecha:$scope.antesala.fecha,
-			creador:$scope.antesala.creador.creador,
-			mensaje:$scope.antesala.mensaje
-    	});
 		$timeout(function(){
-			$location.path('/admin/antesala');	
-		},6000);
-
+			$modalInstance.close('guardado');
+		},500);
 	};
 })
 .factory('catalogoF',function(){
@@ -770,7 +832,7 @@ angular.module('mdfs', ['ui.bootstrap', 'ngRoute'])//, 'dialog'
 		actualiza: {}
 	};
 })
-.controller('serviciosCtrlCRUD',function($scope, $route, $routeParams, $location,$filter,us,serviciosF){
+.controller('serviciosCtrlCRUD',function($scope, $route, $routeParams, $location,$filter,$modal,us,serviciosF){
 	
 	$scope.objetos = serviciosF.objetos;
 	var acciones = [];
@@ -787,7 +849,7 @@ angular.module('mdfs', ['ui.bootstrap', 'ngRoute'])//, 'dialog'
 	    }catch(e){
 	    	//
 	    }
-    }, true );
+    }, true);
 
 	$scope.eliminar = function(){
 		angular.forEach(acciones,function(f){
@@ -819,17 +881,17 @@ angular.module('mdfs', ['ui.bootstrap', 'ngRoute'])//, 'dialog'
       	$location.path('/admin/servicios/actualizar');
 	}
 })
-.controller('serviciosCrearCtrlCRUD',function($scope, $route, $routeParams, $location,$timeout,us,serviciosF){
+.controller('serviciosCrearCtrlCRUD',function($scope,$timeout, $modalInstance,us,serviciosF){
 	
 	$scope.formulariotipoEntrega = serviciosF.formulariotipoEntrega;
 	$scope.formularioEstado = serviciosF.formularioEstado;
 	$scope.enviar = function(){
 		$timeout(function() {
 			$location.path('/admin/servicios');
-		}, 7000);	
+		}, 500);	
 	};
 })
-.controller('serviciosActualizarCtrlCRUD',function($scope, $route, $routeParams, $location,$timeout,us,serviciosF){
+.controller('serviciosActualizarCtrlCRUD',function($scope,$timeout,$modalInstance,us,serviciosF){
 	$scope.formulariotipoEntrega = serviciosF.formulariotipoEntrega;
 	$scope.formularioEstado = serviciosF.formularioEstado;
 	$scope.servicios = serviciosF.actualiza;
@@ -853,56 +915,322 @@ angular.module('mdfs', ['ui.bootstrap', 'ngRoute'])//, 'dialog'
     	};
 		$timeout(function(){
 			$location.path('/admin/servicios');	
-		},6000);
-
+		},500);
 	};
-   //  	antesalaF.objetos.push({
-   //  		codigo:$scope.antesala.codigo,
-			// titulo:$scope.antesala.titulo,
-			// fecha:$scope.antesala.fecha,
-			// creador:$scope.antesala.creador.creador,
-			// mensaje:$scope.antesala.mensaje
-   //  	});
 })
 .factory('tecnicosF',function(){
 	return {
 		objetos: [
 			{
-				codigo:'3',
-				titulo:'Llevar uniforme',
-				fecha:'20-03-2014',
-				activo: true
+				documento:'103324334',
+				usuario:'pablocinfuentes',
+				contrasena:'************',
+				nombres: 'Pablo',
+				apellidos: 'Cinfuentes',
+				telefono: '2237676',
+				direccion: 'carrera 44 #23-30',
+				zona: 'bello'
 			},
 			{
-				codigo:'4',
-				titulo:'Un técnico bien presentado',
-				mensaje:'Un técnico bien presentado significa un servicio mas agradable',
-				activo: true
+				documento:'37656556',
+				usuario:'camilopiedrahita',
+				contrasena:'************',
+				nombres: 'Camilo José',
+				apellidos: 'Calle Piedrahita',
+				telefono: '2237654',
+				direccion: 'calle 40 #13-22',
+				zona: 'itagui'
+			},
+			{
+				documento:'76556555',
+				usuario:'camiloperez',
+				contrasena:'************',
+				nombres: 'Camilo',
+				apellidos: 'Calle Perez',
+				telefono: '2138699',
+				direccion: 'carrera 10 #13-00 piso 2',
+				zona: 'medellinNorte'
+			},
+		],
+		formulariozona: [
+			{
+				zona:'bello'
+			},
+			{
+				zona:'itagui'
+			},
+			{
+				zona:'medellinNorte'
+			},
+			{
+				zona:'medellinSur'
+			},
+			{
+				zona:'MedellinOccidente'
 			}
 		],
-		formulariocreador: [
+		formulariodisponibilidad: [
 			{
-				creador:'Joshep Perez'
+				disponibilidad:'si'
 			},
 			{
-				creador:'Andrés Herrera'
+				disponibilidad:'no'
+			}
+		],
+		horas: [
+			{
+				hora: 8,
+				seleccionado: true
+			},
+			{
+				hora: 9,
+				seleccionado: true
+			},
+			{
+				hora: 10,
+				seleccionado: true
+			},
+			{
+				hora: 11,
+				seleccionado: true
+			},
+			{
+				hora: 12,
+				seleccionado: false
+			},
+			{
+				hora: 13,
+				seleccionado: true
+			},
+			{
+				hora: 14,
+				seleccionado: true
+			},
+			{
+				hora: 15,
+				seleccionado: true
+			},
+			{
+				hora: 16,
+				seleccionado: true
+			},
+			{
+				hora: 17,
+				seleccionado: true
+			},
+			{
+				hora: 18,
+				seleccionado: false
+			},
+			{
+				hora: 19,
+				seleccionado: false
 			}
 		]
 	};
 })
-.controller('tecnicosCtrlCRUD',function($scope, $route, $routeParams, $location,us){
-	//
+.controller('tecnicosCtrlCRUD',function($scope, $route, $routeParams, $location,$filter,$modal,us,tecnicosF){
+	//inicializacion
+	$scope.objetos = tecnicosF.objetos;
+	$scope.formulariozona = tecnicosF.formulariozona;
+	$scope.formulariodisponibilidad = tecnicosF.formulariodisponibilidad;
+	var acciones = [];
+	$scope.orden = '-documento';
+	//supervision lista
+	$scope.$watch( "objetos" , function(n,o){
+	    var trues = $filter("filter")( n , {seleccionado:true} );
+	    try{
+	    	if(acciones.length > 0){
+	    		acciones = [];
+	    	}
+	    	angular.forEach(trues,function(f){
+	    		acciones.push(f);
+	    	});
+	    	$scope.sel = trues.length;
+	    }catch(e){
+	    	//
+	    }
+    }, true );
+	//metodos
+	$scope.actualizar = function(){
+		tecnicosF.actualiza = {
+			documento:parseInt(acciones[0].documento),
+			usuario:acciones[0].usuario,
+			nombres:acciones[0].nombres,
+			apellidos:acciones[0].apellidos,
+			telefono:parseInt(acciones[0].telefono),
+			direccion:acciones[0].direccion
+		}
+      	var modalInstance = $modal.open({
+			templateUrl: 'plantillas/CRUD/actualizartecnicos.html',
+			controller: 'tecnicosActualizarCtrlCRUD as modo',
+			size: 'lg',
+			resolve: {
+				items: function(){
+					return tecnicosF.actualiza;
+				}
+			}
+		});
+		modalInstance.result.then(function(parametros){
+			console.log('actualizo tecnicos');
+		},function(cerro){
+			console.log('cerro actualizar tecnicos');
+		});
+	}
+    $scope.buscarCentro =  function(){
+		//	$scope.objetos = Datos;
+	}
+	$scope.crear = function(){
+		var modalInstance = $modal.open({
+			templateUrl: 'plantillas/CRUD/creartecnicos.html',
+			controller:'tecnicosCrearCtrlCRUD as modo',
+			size: 'lg',
+			resolve: {
+				items: function(){
+					return '$scope.';
+				}
+			}
+		});
+		modalInstance.result.then(function(parametros){
+	    	console.log('guardo tecnicos');
+		},function(cerro){
+			console.log('cerrro crear tecnicos');
+		});
+  	}
+  	$scope.disponibilidad = function(){
+  		console.log('modificar disponibilidad');
+  		tecnicosF.disponibilidad = {
+			documento:parseInt(acciones[0].documento)
+		}
+      	var modalInstance = $modal.open({
+			templateUrl: 'plantillas/CRUD/disponibilidadtecnicos.html',
+			controller: 'tecnicosDisponibilidadCtrlCRUD as modo',
+			size: 'lg',
+			resolve: {
+				items: function(){
+					return tecnicosF.disponibilidad;
+				}
+			}
+		});
+  	}
+	$scope.eliminar = function(){
+		angular.forEach(acciones,function(f){
+    		var index = $scope.objetos.indexOf(f);
+        	$scope.objetos.splice(index, 1);
+        	tecnicosF.objetos  = $scope.objetos;
+    	});
+	}
 })
-.controller('tecnicosCrearCtrlCRUD',function($scope, $route, $routeParams, $location,us){
-	$scope.formulariocreador = antesalaF.formulariocreador;
+.controller('tecnicosCrearCtrlCRUD',function($scope,$timeout,$modalInstance,us,tecnicosF,crearFac){
+	$scope.formulariozona = tecnicosF.formulariozona;
+	$scope.formulariodisponibilidad = tecnicosF.formulariodisponibilidad;
+	//es necesario inicializarla para poderla leer en modal
+	//javascript inherint scope leer en profundidad
+	$scope.tecnico = {};
+	$scope.regresar = function(){
+		$modalInstance.dismiss('Regresar');
+	}
 	$scope.enviar = function(){
-		$timeout(function() {
-			$location.path('/admin/antesala');
-		}, 7000);	
+		console.log($scope.tecnico.direccion);
+		console.log($scope.tecnico.zona.zona);
+    	//var reg = crearFac.crear($scope.antesala,antesalaF.objetos);
+     	tecnicosF.objetos.push({
+     		documento:$scope.tecnico.documento,
+			usuario:$scope.tecnico.usuario,
+			contrasena:'******',
+			nombres:$scope.tecnico.nombres,
+			apellidos:$scope.tecnico.apellidos,
+			telefono:$scope.tecnico.telefono,
+			direccion:$scope.tecnico.direccion,
+			zona:$scope.tecnico.zona.zona,
+     	});
+    	$timeout(function(){
+    		$modalInstance.close('guardado');	
+    	},500);
+	}
+})
+.controller('tecnicosActualizarCtrlCRUD',function($scope,$timeout,$modalInstance,us,tecnicosF){
+	$scope.tecnico = tecnicosF.actualiza;
+	$scope.formulariozona = tecnicosF.formulariozona;
+	$scope.formulariodisponibilidad = tecnicosF.formulariodisponibilidad;
+	$scope.regresar = function(){
+		$modalInstance.dismiss('Regresar');
+	}
+	$scope.actualizar = function(){
+    	for (var i = tecnicosF.objetos.length - 1; i >= 0; i--) {
+    		if(tecnicosF.objetos[i].usuario == $scope.tecnico.usuario){
+    			tecnicosF.objetos[i].documento == $scope.tecnico.documento;
+    			tecnicosF.objetos[i].nombres = $scope.tecnico.nombres;
+    			tecnicosF.objetos[i].apellidos = $scope.tecnico.apellidos;
+    			tecnicosF.objetos[i].telefono = $scope.tecnico.telefono;
+    			tecnicosF.objetos[i].direccion = $scope.tecnico.direccion;
+    			tecnicosF.objetos[i].zona.zona = $scope.tecnico.zona.zona;
+    			//tecnicosF.objetos.splice(i,1);
+    		}
+    	};
+		$timeout(function(){
+			$modalInstance.close('guardado');
+		},500);
 	};
 })
-.controller('tecnicosActualizarCtrlCRUD',function($scope, $route, $routeParams, $location,us){
-	//
+.controller('tecnicosDisponibilidadCtrlCRUD',function($scope,$timeout,$modalInstance,us,tecnicosF){
+	//inicializacion
+	$scope.today = function() {
+		$scope.fecha = new Date();
+	};
+	$scope.today();
+
+	$scope.clear = function () {
+		$scope.fecha = null;
+	};
+
+	// Disable weekend selection
+	$scope.disabled = function(date, mode) {
+		return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+	};
+
+	$scope.toggleMin = function() {
+		$scope.minDate = $scope.minDate ? null : new Date();
+	};
+	$scope.toggleMin();
+
+	$scope.open = function($event) {
+		$event.preventDefault();
+		$event.stopPropagation();
+		$scope.opened = true;
+	};
+
+	$scope.dateOptions = {
+		formatYear: 'yy',
+		startingDay: 1
+	};
+
+	$scope.initDate = new Date('2016-15-20');
+	$scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+	$scope.format = $scope.formats[0];
+	$scope.horas = tecnicosF.horas;
+	$scope.tecnico = tecnicosF.disponibilidad;
+	$scope.formulariozona = tecnicosF.formulariozona;
+	$scope.formulariodisponibilidad = tecnicosF.formulariodisponibilidad;
+
+	$scope.regresar = function(){
+		$modalInstance.dismiss('Regresar');
+	}
+	$scope.enviar = function(){
+    	for (var i = tecnicosF.objetos.length - 1; i >= 0; i--) {
+    		if(tecnicosF.objetos[i].usuario == $scope.tecnico.usuario){
+    			tecnicosF.objetos[i].documento == $scope.tecnico.documento;
+    			tecnicosF.objetos[i].nombres = $scope.tecnico.nombres;
+    			tecnicosF.objetos[i].apellidos = $scope.tecnico.apellidos;
+    			tecnicosF.objetos[i].telefono = $scope.tecnico.telefono;
+    			tecnicosF.objetos[i].direccion = $scope.tecnico.direccion;
+    			tecnicosF.objetos[i].zona.zona = $scope.tecnico.zona.zona;
+    		}
+    	};
+		$timeout(function(){
+			$modalInstance.close('guardado');
+		},500);
+	};
 })
 .factory('zonasF',function(){
 	return {
@@ -996,21 +1324,23 @@ angular.module('mdfs', ['ui.bootstrap', 'ngRoute'])//, 'dialog'
 	$scope.closeAlert = function(index) {
 		$scope.alerts.splice(index, 1);
 	};
-	//
-	tecnicosFTec.objetos = serviciosF.objetos;
-	tecnicosFTec.formulariotipoEntrega = serviciosF.formulariotipoEntrega;
-	tecnicosFTec.formularioEstado = serviciosF.formularioEstado;
-	tecnicosFTec.actualiza = serviciosF.actualiza;
-	$scope.orden = '-horaEntrega';
+	//menu superior
 	$scope.tabs = [
 		{title:'Servicios',content:'',active:true},
 		{title:'Historico',content:''},
 		{title:'Antesala',content:''}
 	];
-	
+	//inicializacion
+	//orden tabla
+	$scope.orden = '-horaEntrega';
+	//objetos
+	tecnicosFTec.objetos = serviciosF.objetos;
+	tecnicosFTec.formulariotipoEntrega = serviciosF.formulariotipoEntrega;
+	tecnicosFTec.formularioEstado = serviciosF.formularioEstado;
+	tecnicosFTec.actualiza = serviciosF.actualiza;
 	$scope.fechaActual = new Date();
 	$scope.objetos = tecnicosFTec.objetos;
-
+	//funciones
 	$scope.imprimir = function(){
 		contenido = $$('listaServicios').innerHTML;
 		popup = window.open('','_blank');
@@ -1026,24 +1356,8 @@ angular.module('mdfs', ['ui.bootstrap', 'ngRoute'])//, 'dialog'
 		);
 		popup.document.close();
 	}
-	$scope.guardar = function(){
-		contenido = $$('listaServicios').innerHTML;
-		popup = window.open('','_blank');
-		popup.document.open();
-		popup.document.write(
-			'<html>'+
-			'<style type="text/css" media="print">'+
-			'@page { size: landscape; }'+
-			'</style>'+
-			'<body >'+
-			contenido +
-			'</html>'
-		);
-		popup.document.close();
-	}
-	
+	//funciones sobre listado
 	var acciones = [];
-	
 	$scope.$watch( "objetos" , function(n,o){
 	    var trues = $filter("filter")( n , {seleccionado:true} );
 	    try{
@@ -1071,8 +1385,8 @@ angular.module('mdfs', ['ui.bootstrap', 'ngRoute'])//, 'dialog'
 		//	$scope.objetos = Datos;
 	};
 
-	$scope.direccionM = ['xy','cra 123'];
-	
+	//mapa
+	$scope.direccionM = ['xy','cra 123'];	
 	$scope.verMapa = function(){
 		direccion = acciones[0].noNota;
 		var modalInstance = $modal.open({

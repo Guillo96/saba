@@ -1,50 +1,40 @@
-<div class="panel panel-default">
-  <div class="panel panel-heading">
-    <h4> antesalas</h4>
-  </div>
-  <div class="panel panel-body">
-    <form role="form" name="actualizarantesala">
-      <div class="form-group" ng-class="{'has-error': actualizarantesala.titulo.$invalid, 'has-default':actualizarantesala.titulo.$valid}">
-        <label for="titulo">Título</label>
-        <input type="text" class="form-control" name="titulo" id="titulo" ng-model="antesala.titulo" placeholder="ejemplo: C.Z. Quibdó" required>
-        <div ng-show="actualizarantesala.titulo.$dirty && actualizarantesala.titulo.$invalid">
-          <p class="help-block text-danger" ng-show="actualizarantesala.titulo.$error.required">Obligatorio</p>
-          <p class="help-block text-danger" ng-show="actualizarantesala.titulo.$error.text">Invalido</p>
-        </div>
+<div class="panel panel-heading">
+  <h4> antesalas</h4>
+</div>
+<div class="panel panel-body">
+  <form role="form" name="actualizarantesala">
+    <div class="col-sm-12 form-group" ng-class="{'has-error': actualizarantesala.titulo.$invalid, 'has-default':actualizarantesala.titulo.$valid}">
+      <label for="titulo">Título</label>
+      <input type="text" class="form-control" name="titulo" id="titulo" ng-model="antesala.titulo" placeholder="ejemplo: C.Z. Quibdó" required>
+      <div ng-show="actualizarantesala.titulo.$dirty && actualizarantesala.titulo.$invalid">
+        <p class="help-block text-danger" ng-show="actualizarantesala.titulo.$error.required">Obligatorio</p>
+        <p class="help-block text-danger" ng-show="actualizarantesala.titulo.$error.text">Invalido</p>
       </div>
-      <div class="form-group" ng-class="{'has-error': actualizarantesala.fecha.$invalid, 'has-default':actualizarantesala.fecha.$valid}">
-        <label for="fecha">Fecha muestra</label>
-        <input type="date" min="1996-05-23" class="form-control" name="fecha" id="fecha" ng-model="antesala.fecha" placeholder="ejemplo: 293" min="{{fechasMin}}" value="{{antesala.fecha}}">
-        <div ng-show="actualizarantesala.fecha.$dirty && actualizarantesala.fecha.$invalid">
-          <p class="help-block text-danger" ng-show="actualizarantesala.fecha.$error.number">Debe ser un código valido</p>
-        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-6 form-group" ng-class="{'has-error': actualizarantesala.fecha.$invalid, 'has-default':actualizarantesala.fecha.$valid}">
+      <label for="fecha">Fecha muestra</label>
+      <input type="date" min="1996-05-23" class="form-control" name="fecha" id="fecha" ng-model="antesala.fecha" placeholder="ejemplo: 293" min="{{fechasMin}}" value="{{antesala.fecha}}">
+      <div ng-show="actualizarantesala.fecha.$dirty && actualizarantesala.fecha.$invalid">
+        <p class="help-block text-danger" ng-show="actualizarantesala.fecha.$error.number">Debe ser un código valido</p>
       </div>
-      <div class="form-group" ng-class="{'has-error': actualizarantesala.antesala.$invalid, 'has-default':actualizarantesala.antesala.$valid}">
-        <label for="creador">creador </label>
-        <select class="form-control" name="creador" id="creador" ng-model="antesala.creador" ng-options="formulario.creador for formulario in formulariocreador" required></select>
-        <div ng-show="actualizarantesala.antesala.$dirty && actualizarantesala.antesala.$invalid">
-          <p class="help-block text-danger" ng-show="actualizarantesala.antesala.$error.required">Obligatorio</p>
-        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-6 form-group" ng-class="{'has-error': actualizarantesala.antesala.$invalid, 'has-default':actualizarantesala.antesala.$valid}">
+      <label for="creador">creador </label>
+      <select class="form-control" name="creador" id="creador" ng-model="antesala.creador" ng-options="formulario.creador for formulario in formulariocreador" required></select>
+      <div ng-show="actualizarantesala.antesala.$dirty && actualizarantesala.antesala.$invalid">
+        <p class="help-block text-danger" ng-show="actualizarantesala.antesala.$error.required">Obligatorio</p>
       </div>
-      <div class="form-group" ng-class="{'has-error': actualizarantesala.mensaje.$invalid, 'has-default':actualizarantesala.mensaje.$valid}">
-        <label for="mensaje">Mensaje</label>
-        <input type="text" class="form-control" name="mensaje" id="mensaje" ng-model="antesala.mensaje" placeholder="ejemplo: Carrera 20 # 30-45" required>
-        <div ng-show="actualizarantesala.mensaje.$dirty && actualizarantesala.mensaje.$invalid">
-          <p class="help-block text-danger" ng-show="actualizarantesala.mensaje.$error.required">Obligatorio</p>
-          <p class="help-block text-danger" ng-show="actualizarantesala.mensaje.$error.text">Invalido</p>
-        </div>
+    </div>
+    <div class="col-sm-12 form-group" ng-class="{'has-error': actualizarantesala.mensaje.$invalid, 'has-default':actualizarantesala.mensaje.$valid}">
+      <label for="mensaje">Mensaje</label>
+      <input type="text" class="form-control" name="mensaje" id="mensaje" ng-model="antesala.mensaje" placeholder="ejemplo: Carrera 20 # 30-45" rows="3" required>
+      <div ng-show="actualizarantesala.mensaje.$dirty && actualizarantesala.mensaje.$invalid">
+        <p class="help-block text-danger" ng-show="actualizarantesala.mensaje.$error.required">Obligatorio</p>
+        <p class="help-block text-danger" ng-show="actualizarantesala.mensaje.$error.text">Invalido</p>
       </div>
-      <!--
-      <div class="form-group" ng-class="{'has-error': actualizarantesala.imagen.$invalid, 'has-default':actualizarantesala.imagen.$valid}">
-        <label for="imagen">Imagen</label>
-        <input type="file" class="form-control" name="files[]" id="files" ng-model="antesala.imagen" placeholder="" required>
-        <div ng-show="actualizarantesala.imagen.$dirty && actualizarantesala.imagen.$invalid">
-          <p class="help-block text-danger" ng-show="actualizarantesala.imagen.$error.required">Obligatorio</p>
-          <p class="help-block text-danger" ng-show="actualizarantesala.imagen.$error.text">Invalido</p>
-        </div>
-      </div>
-      -->
-      <button class="btn btn-primary" ng-disabled="actualizarantesala.$invalid" ng-click="actualizar()">Actualizar</button>
-    </form>
-  </div>
+    </div>
+    <button class="btn btn-primary btn-lg btn-block" ng-disabled="actualizarantesala.$invalid" ng-click="actualizar()">
+      <i class="glyphicon glyphicon-floppy-disk"></i> Actualizar
+    </button><!--popover-placement="top" popover="El mensaje ha sido creado correctamente" -->
+  </form>
 </div>

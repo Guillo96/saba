@@ -1,0 +1,33 @@
+<div class="panel panel-heading">
+  <h4> Disponibilidad de técnicos
+    <button popover-placement="top" class="btn btn-default btn-xs pull-right" ng-click="regresar()">
+      <i class="glyphicon glyphicon-arrow-left"></i> Regresar
+    </button>
+  </h4>
+</div>
+<div class="panel panel-body">
+  <form role="form" name="disponibilidadtecnico">
+    <div class="row">
+      <div style="display:inline-block; min-height:290px;" class="col-sm-6 col-md-6 col-lg-6 ">
+        <datepicker ng-model="fecha" min-date="minDate" show-weeks="true" class="well well-sm"></datepicker>
+      </div>
+      <div class="col-sm-6 col-md-6 col-lg-6 pull-right lista-hora-tecnicos">
+        <table>
+          <tbody>
+            <tr ng-repeat="hor in horas" class="row" ng-class=" {seleccionado: hor.seleccionado}">
+              <td>
+                <input type="checkbox" ng-model="hor.seleccionado">
+              </td>
+              <td class="seleccion">&nbsp;</td>
+              <td>{{hor.hora}}</td>
+              <td>&nbsp;<strong>-</strong> {{hor.hora + 1}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <button class="btn btn-primary btn-lg btn-block" ng-disabled="disponibilidadtecnico.$invalid" ng-click="enviar()">
+      <i class="glyphicon glyphicon-floppy-disk"></i> Guardar
+    </button><!--popover-placement="top" popover="El hor mensaje ha sido creado correctamente" -->
+  </form>
+</div>
