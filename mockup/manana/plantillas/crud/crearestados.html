@@ -1,0 +1,38 @@
+<!--
+<div class="modal-header">
+  <h3></h3>
+</div>
+-->
+<div class="modal-body">
+<div class="panel panel-success">
+  <div class="panel panel-heading">
+    <h4> Estados</h4>
+  </div>
+  <div class="panel panel-body">
+    <form role="form" name="crearestado">
+      <div class="form-group" ng-class="{'has-error': crearestado.descripcion.$invalid, 'has-success':crearestado.descripcion.$valid}">
+        <label for="descripcion">Descripción</label>
+        <input type="text" class="form-control" name="descripcion" id="descripcion" ng-model="estado.descripcion" placeholder="ejemplo: bloqueado" required>
+        <div ng-show="crearestado.descripcion.$dirty && crearestado.descripcion.$invalid">
+          <p class="help-block text-danger" ng-show="crearestado.descripcion.$error.required">Obligatorio</p>
+          <p class="help-block text-danger" ng-show="crearestado.descripcion.$error.text">Invalido</p>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': crearestado.ide.$invalid, 'has-success':crearestado.ide.$valid}">
+        <label for="ide">Identificador</label>
+        <input type="number" class="form-control" name="ide" id="ide" ng-model="estado.ide" placeholder="ejemplo: 3" min="{{estadosMin}}" value="{{estado.ide}}">
+        <div ng-show="crearestado.ide.$dirty && crearestado.ide.$invalid">
+          <p class="help-block text-danger" ng-show="crearestado.ide.$error.number">Debe ser un número entero</p>
+        </div>
+      </div>
+      <button class="btn btn-primary" ng-disabled="crearestado.$invalid" ng-click="enviar()">Registrar</button>
+    </form>
+  </div>
+</div>
+</div>
+<!--
+<div class="modal-footer">
+  <button class="btn btn-primary" ng-click="ok()">Guardar</button>
+  <button class="btn btn-warning" ng-click="cancel()">Cancelar</button>
+</div>
+-->

@@ -1,0 +1,66 @@
+<div class="panel panel-heading">
+  <h4> Técnicos
+    <button popover-placement="top" class="btn btn-default btn-xs pull-right" ng-click="regresar()">
+      <i class="glyphicon glyphicon-arrow-left"></i> Regresar
+    </button>
+  </h4>
+</div>
+<div class="panel panel-body">
+  <form role="form" name="creartecnico">
+    <div class="col-xs-6 col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group" ng-class="{'has-error': creartecnico.documento.$invalid, 'has-default':creartecnico.documento.$valid}">
+      <label for="documento">Documento</label>
+      <input type="number" class="form-control" name="documento" id="documento" ng-model="tecnico.documento" placeholder="Ejemplo: 21636100" required>
+      <div ng-show="creartecnico.documento.$dirty && creartecnico.documento.$invalid">
+        <p class="help-block text-danger" ng-show="creartecnico.documento.$error.required">Obligatorio</p>
+      </div>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group" ng-class="{'has-error': creartecnico.usuario.$invalid, 'has-default':creartecnico.usuario.$valid}">
+      <label for="usuario">Usuario</label>
+      <input type="text" class="form-control" name="usuario" id="usuario" ng-model="tecnico.usuario" placeholder="Ejemplo: pedrofuentes" required>
+      <div ng-show="creartecnico.usuario.$dirty && creartecnico.usuario.$invalid">
+        <p class="help-block text-danger" ng-show="creartecnico.usuario.$error.required">Obligatorio</p>
+      </div>
+    </div>
+    <span class="clearfix"></span>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group" ng-class="{'has-error': creartecnico.nombres.$invalid, 'has-default':creartecnico.nombres.$valid}">
+      <label for="nombres">Nombres</label>
+      <input type="text" class="form-control" name="nombres" id="nombres" ng-model="tecnico.nombres" placeholder="Ejemplo: Pedro Pablo" required>
+      <div ng-show="creartecnico.nombres.$dirty && creartecnico.nombres.$invalid">
+        <p class="help-block text-danger" ng-show="creartecnico.nombres.$error.required">Obligatorio</p>
+      </div>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group" ng-class="{'has-error': creartecnico.apellidos.$invalid, 'has-default':creartecnico.apellidos.$valid}">
+      <label for="apellidos">Apellidos</label>
+      <input type="text" class="form-control" name="apellidos" id="apellidos" ng-model="tecnico.apellidos" placeholder="Ejemplo: Fuentes Tamayo" required>
+      <div ng-show="creartecnico.apellidos.$dirty && creartecnico.apellidos.$invalid">
+        <p class="help-block text-danger" ng-show="creartecnico.apellidos.$error.required">Obligatorio</p>
+      </div>
+    </div>
+    <span class="clearfix"></span>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group" ng-class="{'has-error': creartecnico.telefono.$invalid, 'has-default':creartecnico.telefono.$valid}">
+      <label for="telefono">Teléfono</label>
+      <input type="number" class="form-control" name="telefono" id="telefono" ng-model="tecnico.telefono" placeholder="Sin espacios Ejemplo: 2213415" required>
+      <div ng-show="creartecnico.telefono.$dirty && creartecnico.telefono.$invalid">
+        <p class="help-block text-danger" ng-show="creartecnico.telefono.$error.required">Obligatorio</p>
+      </div>
+    </div> 
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group" ng-class="{'has-error': creartecnico.direccion.$invalid, 'has-default':creartecnico.direccion.$valid}">
+      <label for="direccion">direccion</label>
+      <input type="text" class="form-control" name="direccion" id="direccion" ng-model="tecnico.direccion" placeholder="Ejemplo: Fuentes Tamayo" required>
+      <div ng-show="creartecnico.direccion.$dirty && creartecnico.direccion.$invalid">
+        <p class="help-block text-danger" ng-show="creartecnico.direccion.$error.required">Obligatorio</p>
+      </div>
+    </div>
+    <span class="clearfix"></span>    
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group" ng-class="{'has-error': creartecnico.zona.$invalid, 'has-default':creartecnico.zona.$valid}">
+      <label for="zona">Zona</label>
+      <select class="form-control" name="zona" id="zona" ng-model="tecnico.zona" ng-options="formulario.zona for formulario in formulariozona" required></select>
+      <div ng-show="creartecnico.direccion.$dirty && creartecnico.direccion.$invalid">
+        <p class="help-block text-danger" ng-show="creartecnico.direccion.$error.required">Obligatorio</p>
+      </div>
+    </div>
+    <button class="btn btn-primary btn-lg btn-block" ng-disabled="creartecnico.$invalid" ng-click="enviar()">
+      <i class="glyphicon glyphicon-floppy-disk"></i> Guardar
+    </button><!--popover-placement="top" popover="El mensaje ha sido creado correctamente" -->
+  </form>
+</div>

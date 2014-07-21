@@ -1,0 +1,85 @@
+<div ng-controller="indicadoresCtrl">
+	<div class="panel panel-success">
+		<div class= "panel-heading">
+			<h3 class="panel-title">Indicadores</h3>
+		</div>
+		<div class="panel-body">	
+			<div class="row">
+				<div class="col-lg-9">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th class="text-success">Tabla de ingresos y salidas de infantes por periodo</th>
+							</tr>
+						</thead>
+						<bodyt>
+							<tr>
+								<th>Total ingresos</th>
+								<td class="text-right"><strong>{{ingresos}}</strong></td>
+							</tr>
+							<tr>
+								<th>Total salidas</th>
+								<td class="text-right"><strong>{{salidas}}</strong></td>
+							</tr>
+						</bodyt>
+					</table>
+					<table class="table table-striped ">
+						<thead>
+							<tr>
+								<th class="text-success">Tabla de infantes activos e inactivos</th>
+							</tr>
+						</thead>
+						<bodyt>
+							<tr>
+								<th>Total infantes activos</th>
+								<td class="text-right"><strong>{{activos}}</strong></td>
+							</tr>
+							<tr>
+								<th>Total infantes inactivos</th>
+								<td class="text-right"><strong>{{inactivos}}</strong></td>
+							</tr>
+						</bodyt>
+					</table>
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th class="text-success">Tabla de infantes nuevos en un periodo</th>
+							</tr>
+						</thead>
+						<bodyt>
+							<tr>
+								<th>Total infantes nuevos</th>
+								<td class="text-right"><strong>{{nuevos}}</strong></td>
+							</tr>
+						</bodyt>
+					</table>
+				</div>
+				<div class="col-lg-2">
+					<button type="button" class="btn btn-success"> Genero:
+						<select class="selectpicker text-success" ng-model="genero">
+							<option class="text-success">Todos</option>
+						    <option class="text-success">Femenino</option>
+						    <option class="text-success">Masculino</option>				    
+				  		</select>
+					</button>
+				</div>						
+			</div> 					
+		</div>
+		<div class="panel-footer">
+			<form ng-submit="buscarFecha()">
+				<div class="row">
+					<div class="btn-group col-lg-2">
+						<input type="submit" id="submit" value="Filtrar" class="btn btn-success form-control" ng-model="click" />
+					</div>				
+					<div class="input-append date col-lg-5">
+					    <input type="date" ng-model="fechaInicial" class="form-control"/>					    					
+					</div>	
+					<div class="input-append date col-lg-5">
+					    <input type="date" ng-model="fechaFinal" class="form-control" />		    					
+					</div>			
+				</div>	
+			</form>							
+		</div>	
+	</div> 
+</div> 
+

@@ -1,0 +1,54 @@
+<html lang="es">
+  <head>
+    
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/bootstrap-theme.min">
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
+  <script type="text/javascript" src="../js/graficolinea.js"></script>
+ 
+
+  </head>
+  <body ng-controller="lineaCtrl">
+
+
+  <div class= "container-fluid">
+  <div class= "row">
+    <hr>
+    <div class= "col-md-8 col-md-offset-8">
+    <button type="button" class="btn btn-inverse dropdown-toggle" > 
+      genero:
+    <select class="selectpicker">
+        <option></option>
+        <option>Femenino</option>
+        <option>Masculino</option>
+        
+      </select>
+    </button>    
+    </div>
+    </div>
+   
+   <div id="chart_div" style="width: 900px; height: 500px;" class= "col-md-2 col-md-offset-2"> </div>
+ 
+  
+      <div class= "col-md-6 col-md-offset-4">
+
+      Fecha inicial:<input type="date" id="exampleInput" name="input" ng-model="date"
+          placeholder="yyyy-MM-dd" min="2013-01-01" max="2013-12-31" required />
+    <hr>
+        Fecha final:<input type="date" id="exampleInput" name="input" ng-model="date"
+          placeholder="yyyy-MM-dd" min="2013-01-01" max="2013-12-31" required />
+      </div>
+  </div>
+ 
+</div>
+   
+</body>
+</html> 

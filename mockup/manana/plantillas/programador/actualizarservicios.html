@@ -1,0 +1,102 @@
+<div class="panel panel-default">
+  <div class="panel panel-heading">
+    <h4> Servicios</h4>
+  </div>
+  <div class="panel panel-body">
+    <form role="form"  name="crearservicios">
+      <div class="col-md-6 col-lg-6 form-group" ng-class="{'has-error': crearservicios.noNota.$invalid, 'has-default':crearservicios.noNota.$valid}">
+        <label for="noNota">Número de nota</label>
+        <input type="text" class="form-control" name="noNota" id="noNota" ng-model="servicios.noNota" placeholder="ejemplo: 44-36776" min="{{noNotasMin}}" value="{{servicios.noNota}} required" required>
+        <div ng-show="crearservicios.noNota.$dirty && crearservicios.noNota.$invalid">
+          <p class="help-block text-danger" ng-show="crearservicios.noNota.$error.required">Obligatorio</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-6 form-group" ng-class="{'has-error': crearservicios.identificadorC.$invalid, 'has-default':crearservicios.identificadorC.$valid}">
+        <label for="identificadorC">Identificación</label>
+        <input type="text" class="form-control" name="identificadorC" id="identificadorC" ng-model="servicios.identificadorC" placeholder="Número de NIT o documento" required>
+        <div ng-show="crearservicios.identificadorC.$dirty && crearservicios.identificadorC.$invalid">
+          <p class="help-block text-danger" ng-show="crearservicios.identificadorC.$error.required">Obligatorio</p>
+        </div>
+      </div>
+      <span class="clearfix"></span>
+      <div class="col-md-6 col-lg-6 form-group" ng-class="{'has-error': crearservicios.nombresC.$invalid, 'has-default':crearservicios.nombresC.$valid}">
+        <label for="nombresC">nombresC</label>
+        <input type="text" class="form-control" name="nombresC" id="nombresC" ng-model="servicios.nombresC" placeholder="nombresC y apellidos completos" required>
+        <div ng-show="crearservicios.nombresC.$dirty && crearservicios.nombresC.$invalid">
+          <p class="help-block text-danger" ng-show="crearservicios.nombresC.$error.required">Obligatorio</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-6 form-group" ng-class="{'has-error': crearservicios.tiempoEsperadoEjecucion.$invalid, 'has-default':crearservicios.tiempoEsperadoEjecucion.$valid}">
+        <label for="tiempoEsperadoEjecucion">Tiempo esperado</label>
+        <input type="time" min="1996-05-23" class="form-control" name="tiempoEsperado" id="tiempoEsperadoEjecucion" ng-model="servicios.tiempoEsperado" placeholder="HH:mm">
+        <div ng-show="crearservicios.tiempoEsperadoEjecucion.$dirty && crearservicios.tiempoEsperadoEjecucion.$invalid">
+          <p class="help-block text-danger" ng-show="crearservicios.tiempoEsperadoEjecucion.$error.required">Obligatorio</p>
+        </div>
+      </div>
+      <span class="clearfix"></span>
+      <div class="col-md-6 col-lg-6 form-group" ng-class="{'has-error': crearservicios.direccionC.$invalid, 'has-default':crearservicios.direccionC.$valid}">
+        <label for="direccionC">Dirección</label>
+        <input type="text" class="form-control" name="direccionC" id="direccionC" ng-model="servicios.direccionC" placeholder="ejemplo: carrera 23 # 20-10" min="{{direccionCsMin}}" value="{{servicios.direccionC}} required" required>
+        <div ng-show="crearservicios.direccionC.$dirty && crearservicios.direccionC.$invalid">
+          <p class="help-block text-danger" ng-show="crearservicios.direccionC.$error.required">Obligatorio</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-6 form-group" ng-class="{'has-error': crearservicios.telefonoC.$invalid, 'has-default':crearservicios.telefonoC.$valid}">
+        <label for="telefonoC">Teléfono</label>
+        <input type="text" class="form-control" name="telefonoC" id="telefonoC" ng-model="servicios.telefonoC" placeholder="ejemplo: 2345599" required>
+        <div ng-show="crearservicios.telefonoC.$dirty && crearservicios.telefonoC.$invalid">
+          <p class="help-block text-danger" ng-show="crearservicios.telefonoC.$error.required">Obligatorio</p>
+          <p class="help-block text-danger" ng-show="crearservicios.telefonoC.$error.number">El campo sólo debe contener números</p>
+        </div>
+      </div>
+      <span class="clearfix"></span>
+      <div class="col-md-6 col-lg-6 form-group" ng-class="{'has-error': crearservicios.fechaEntrega.$invalid, 'has-default':crearservicios.fechaEntrega.$valid}">
+        <label for="fechaEntrega">Fecha de entrega</label>
+        <input type="date" min="1996-05-23" class="form-control" name="fechaEntrega" id="fechaEntrega" ng-model="servicios.fechaEntrega" min="{{fechaEntregasMin}}" value="{{servicios.fechaEntrega}}" required>
+        <div ng-show="crearservicios.fechaEntrega.$dirty && crearservicios.fechaEntrega.$invalid">
+          <p class="help-block text-danger" ng-show="crearservicios.fechaEntrega.$error.required">Obligatorio</p>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 form-group" ng-class="{'has-error': crearservicios.horaEntrega.$invalid, 'has-default':crearservicios.horaEntrega.$valid}">
+        <label for="horaEntrega">Hora de entrega</label>
+        <input type="time" min="1996-05-23" class="form-control" name="horaEntrega" id="horaEntrega" ng-model="servicios.horaEntrega" min="06:00" placeholder="HH:mm" required>
+        <div ng-show="crearservicios.horaEntrega.$dirty && crearservicios.horaEntrega.$invalid">
+          <p class="help-block text-danger" ng-show="crearservicios.horaEntrega.$error.required">Obligatorio</p>
+          <p class="help-block text-danger" ng-show="crearservicios.horaEntrega.$error.valid">Hora</p>
+        </div>
+      </div>
+      <span class="clearfix"></span>
+      <div class="col-md-6 col-lg-6 form-group" ng-class="{'has-error': crearservicios.tipoEntrega.$invalid, 'has-default':crearservicios.tipoEntrega.$valid}">
+        <label for="tipoEntrega">Tipo de entrega</label>
+        <select class="form-control" name="tipoEntrega" id="tipoEntrega" ng-model="servicios.tipoEntrega" ng-options="formulario.tipoEntrega for formulario in formulariotipoEntrega" required></select>
+        <div ng-show="crearservicios.tipoEntrega.$dirty && crearservicios.tipoEntrega.$invalid">
+          <p class="help-block text-danger" ng-show="crearservicios.tipoEntrega.$error.required">Obligatorio</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-6 form-group" ng-class="{'has-error': crearservicios.Estado.$invalid, 'has-default':crearservicios.Estado.$valid}">
+        <label for="Estado">Estado</label>
+        <select class="form-control" name="estado" id="estado" ng-model="servicios.estado" ng-options="formulario.estado for formulario in formularioEstado" required></select>
+        <div ng-show="crearservicios.Estado.$dirty && crearservicios.Estado.$invalid">
+          <p class="help-block text-danger" ng-show="crearservicios.Estado.$error.required">Obligatorio</p>
+        </div>
+      </div>
+      <span class="clearfix"></span>
+      <div class="col-md-6 col-lg-6 form-group" ng-class="{'has-error': crearservicios.descripcion.$invalid, 'has-default':crearservicios.descripcion.$valid}">
+        <label for="descripcion">Descripción</label>
+        <textarea rows="2" class="form-control" name="descripcion" id="descripcion" ng-model="servicios.descripcion" placeholder="ejemplo: Instalación lámpara hasta $89.900" required></textarea>
+        <div ng-show="crearservicios.descripcion.$dirty && crearservicios.descripcion.$invalid">
+          <p class="help-block text-danger" ng-show="crearservicios.descripcion.$error.required">Obligatorio</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-6 form-group" ng-class="{'has-error': crearservicios.observaciones.$invalid, 'has-default':crearservicios.observaciones.$valid}">
+        <label for="observaciones">Observaciones</label>
+        <textarea class="form-control" rows="2" name="observaciones" id="observaciones" ng-model="servicios.observaciones" placeholder=""></textarea>
+        <div ng-show="crearservicios.observaciones.$dirty && crearservicios.observaciones.$invalid">
+          <p class="help-block text-danger" ng-show="crearservicios.observaciones.$error.required">Obligatorio</p>
+        </div>
+      </div>
+      <span class="clearfix"></span>
+      <button popover-placement="top" popover="El mensaje ha sido creado correctamente" class="btn btn-primary" ng-disabled="crearservicios.$invalid" ng-click="actualizar()">Actualizar</button>
+    </form>
+  </div>
+</div>

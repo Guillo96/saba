@@ -1,0 +1,66 @@
+<div class="panel panel-heading">
+  <h4> Técnicos
+    <button popover-placement="top" class="btn btn-default btn-xs pull-right" ng-click="regresar()">
+      <i class="glyphicon glyphicon-arrow-left"></i> Regresar
+    </button>
+  </h4>
+</div>
+<div class="panel panel-body">
+  <form role="form" name="actualizartecnico">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group" ng-class="{'has-error': actualizartecnico.documento.$invalid, 'has-default':actualizartecnico.documento.$valid}">
+      <label for="documento">Documento</label>
+      <input type="number" class="form-control" name="documento" id="documento" ng-model="tecnico.documento" required>
+      <div ng-show="actualizartecnico.documento.$dirty && actualizartecnico.documento.$invalid">
+        <p class="help-block text-danger" ng-show="actualizartecnico.documento.$error.required">Obligatorio</p>
+      </div>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group" ng-class="{'has-error': actualizartecnico.usuario.$invalid, 'has-default':actualizartecnico.usuario.$valid}">
+      <label for="usuario">Usuario</label>
+      <input type="text" class="form-control" name="usuario" id="usuario" ng-model="tecnico.usuario" required>
+      <div ng-show="actualizartecnico.usuario.$dirty && actualizartecnico.usuario.$invalid">
+        <p class="help-block text-danger" ng-show="actualizartecnico.usuario.$error.required">Obligatorio</p>
+      </div>
+    </div>
+    <span class="clearfix"></span>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group" ng-class="{'has-error': actualizartecnico.nombres.$invalid, 'has-default':actualizartecnico.nombres.$valid}">
+      <label for="nombres">Nombres</label>
+      <input type="text" class="form-control" name="nombres" id="nombres" ng-model="tecnico.nombres" required>
+      <div ng-show="actualizartecnico.nombres.$dirty && actualizartecnico.nombres.$invalid">
+        <p class="help-block text-danger" ng-show="actualizartecnico.nombres.$error.required">Obligatorio</p>
+      </div>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group" ng-class="{'has-error': actualizartecnico.apellidos.$invalid, 'has-default':actualizartecnico.apellidos.$valid}">
+      <label for="apellidos">Apellidos</label>
+      <input type="text" class="form-control" name="apellidos" id="apellidos" ng-model="tecnico.apellidos" required>
+      <div ng-show="actualizartecnico.apellidos.$dirty && actualizartecnico.apellidos.$invalid">
+        <p class="help-block text-danger" ng-show="actualizartecnico.apellidos.$error.required">Obligatorio</p>
+      </div>
+    </div>
+    <span class="clearfix"></span>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group" ng-class="{'has-error': actualizartecnico.telefono.$invalid, 'has-default':actualizartecnico.telefono.$valid}">
+      <label for="telefono">Teléfono</label>
+      <input type="number" class="form-control" name="telefono" id="telefono" ng-model="tecnico.telefono" required>
+      <div ng-show="actualizartecnico.telefono.$dirty && actualizartecnico.telefono.$invalid">
+        <p class="help-block text-danger" ng-show="actualizartecnico.telefono.$error.required">Obligatorio</p>
+      </div>
+    </div> 
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group" ng-class="{'has-error': actualizartecnico.direccion.$invalid, 'has-default':actualizartecnico.direccion.$valid}">
+      <label for="direccion">direccion</label>
+      <input type="text" class="form-control" name="direccion" id="direccion" ng-model="tecnico.direccion" required>
+      <div ng-show="actualizartecnico.direccion.$dirty && actualizartecnico.direccion.$invalid">
+        <p class="help-block text-danger" ng-show="actualizartecnico.direccion.$error.required">Obligatorio</p>
+      </div>
+    </div>
+    <span class="clearfix"></span>    
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group" ng-class="{'has-error': actualizartecnico.zona.$invalid, 'has-default':actualizartecnico.zona.$valid}">
+      <label for="zona">Zona</label>
+      <select class="form-control" name="zona" id="zona" ng-model="tecnico.zona" ng-options="formulario.zona for formulario in formulariozona" required></select>
+      <div ng-show="actualizartecnico.direccion.$dirty && actualizartecnico.direccion.$invalid">
+        <p class="help-block text-danger" ng-show="actualizartecnico.direccion.$error.required">Obligatorio</p>
+      </div>
+    </div>
+    <button class="btn btn-primary btn-lg btn-block" ng-disabled="actualizartecnico.$invalid" ng-click="actualizar()">
+      <i class="glyphicon glyphicon-floppy-disk"></i> Guardar
+    </button><!--popover-placement="top" popover="El mensaje ha sido creado correctamente" -->
+  </form>
+</div>

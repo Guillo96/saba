@@ -1,0 +1,101 @@
+<!--
+<div class="modal-header">
+  <h3></h3>
+</div>
+-->
+<!--<div class="modal-body">-->
+<div class="panel panel-success">
+  <div class="panel panel-heading">
+    <h4> Infantes</h4>
+  </div>
+  <div class="panel panel-body">
+    <form role="form" name="crearinfante"><!-- ng-submit="guardarInfante()"-->
+      <div class="form-group" ng-class="{'has-error': crearinfante.documento.$invalid, 'has-success':crearinfante.documento.$valid}">
+        <label for="documento">Documento</label>
+        <input type="number" min="0" class="form-control" name="documento" id="documento" ng-model="infante.documento" placeholder="######" required>
+        <div ng-show="crearinfante.documento.$dirty && crearinfante.documento.$invalid">
+          <p class="help-block text-danger" ng-show="crearinfante.documento.$error.required">Obligatorio</p>
+          <p class="help-block text-danger" ng-show="crearinfante.documento.$error.number">Debe ser un número</p>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': crearinfante.estado.$invalid, 'has-success':crearinfante.estado.$valid}">
+        <label for="estado">Estado</label>
+        <select class="form-control" name="estado" id="estado" ng-model="infante.estado" ng-model="infante.estado" ng-options="formulario.estado for formulario in formularioEstado" required></select>
+        <div ng-show="crearinfante.estado.$dirty && crearinfante.estado.$invalid">
+          <p class="help-block text-danger" ng-show="crearinfante.estado.$error.required">Obligatorio</p>
+          <p class="help-block text-danger" ng-show="crearinfante.estado.$error.text">Activo o Inactivo solamente</p>
+        </div>
+      </div>
+      <div class="form-group"  ng-class="{'has-error': crearinfante.genero.$invalid, 'has-success':crearinfante.genero.$valid}">
+        <label for="genero">Género</label>
+        <select ng-model="infante.genero" ng-options="formulario.genero for formulario in formularioGenero" class="form-control"  name="genero" id="genero" required></select>
+        <div ng-show="crearinfante.genero.$dirty && crearinfante.genero.$invalid">
+          <p class="help-block text-danger" ng-show="crearinfante.genero.$error.required">Obligatorio</p>
+          <p class="help-block text-danger" ng-show="crearinfante.genero.$error.text">femenino o masculino únicamente</p>
+        </div>
+      </div>
+      <div class="form-group"  ng-class="{'has-error': crearinfante.codigo_hogar.$invalid, 'has-success':crearinfante.codigo_hogar.$valid}">
+        <label for="codigo_hogar">Código hogar</label>
+        <select ng-model="infante.codigo_hogar" ng-options="formulario.codigo for formulario in formularioCodigo_hogar" class="form-control" name="codigo_hogar" id="codigo_hogar" required></select>
+      </div>
+      <div class="form-group" ng-class="{'has-error': crearinfante.fecha.$invalid, 'has-success':crearinfante.fecha.$valid}">
+        <label for="fecha">Fecha de nacimiento</label>
+        <input type="date" min="1996-05-23" max="2014-05-28" class="form-control" name="fecha" id="fecha" ng-model="infante.fecha" placeholder="dd/mm/año" >
+        <div ng-show="crearinfante.fecha.$dirty && crearinfante.fecha.$invalid">
+          <p class="help-block text-danger" ng-show="crearinfante.fecha.$error.date">No es una fecha valida</p>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': crearinfante.primer_nombre.$invalid, 'has-success':crearinfante.primer_nombre.$valid}">
+        <label for="primer_nombre">Primer Nombre</label>
+        <input type="text" class="form-control" name="primer_nombre" id="primer_nombre" ng-model="infante.primer_nombre" placeholder="Primer nombre" required>
+        <div ng-show="crearinfante.primer_nombre.$dirty && crearinfante.primer_nombre.$invalid">
+          <p class="help-block text-danger" ng-show="crearinfante.primer_nombre.$error.required">Obligatorio</p>
+          <p class="help-block text-danger" ng-show="crearinfante.primer_nombre.$error.text">Invalido</p>
+        </div>
+      </div>
+      <div class="form-group"  ng-class="{'has-error': crearinfante.segundo_nombre.$invalid, 'has-success':crearinfante.segundo_nombre.$valid}">
+        <label for="segundo_nombre">Segundo nombre</label>
+        <input type="text" class="form-control" name="segundo_nombre" id="segundo_nombre" ng-model="infante.segundo_nombre" placeholder="Segundo nombre">
+        <div ng-show="crearinfante.segundo_nombre.$dirty && crearinfante.segundo_nombre.$invalid">
+          <p class="help-block text-danger" ng-show="crearinfante.segundo_nombre.$error.text">Invalido</p>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': crearinfante.primer_apellido.$invalid, 'has-success':crearinfante.primer_apellido.$valid}">
+        <label for="primer_apellido">Primer apellido</label>
+        <input type="text" class="form-control" name="primer_apellido" id="primer_apellido" ng-model="infante.primer_apellido" placeholder="Primer apellido" required>
+        <div ng-show="crearinfante.segundo_nombre.$dirty && crearinfante.segundo_nombre.$invalid">
+          <p class="help-block text-danger" ng-show="crearinfante.genero.$error.required">Obligatorio</p>
+          <p class="help-block text-danger" ng-show="crearinfante.segundo_nombre.$error.text">Invalido</p>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': crearinfante.segundo_apellido.$invalid, 'has-success':crearinfante.segundo_apellido.$valid}">
+        <label for="segundo_apellido">Segundo apellido</label>
+        <input type="text" class="form-control" name="segundo_apellido" id="segundo_apellido" ng-model="infante.segundo_apellido" placeholder="Segundo apellido">
+      </div>
+      <div class="form-group" ng-class="{'has-error': crearinfante.talla.$invalid, 'has-success':crearinfante.talla.$valid}">
+        <label for="talla">Talla <small>cm</small></label>
+        <input type="number" class="form-control" name="talla" id="talla" ng-model="infante.talla" placeholder="ejemplo: 106">
+        <div ng-show="crearinfante.talla.$dirty && crearinfante.talla.$invalid">
+          <p class="help-block text-danger" ng-show="crearinfante.talla.$error.number">Estatura en centímetros</p>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{'has-error': crearinfante.peso.$invalid, 'has-success':crearinfante.peso.$valid}">
+        <label for="peso">Peso <small>kg</small></label>
+        <input type="number" class="form-control" name="peso" id="peso" ng-model="infante.peso" placeholder="Ejemplo: 34">
+        <div ng-show="crearinfante.peso.$dirty && crearinfante.peso.$invalid">
+          <p class="help-block text-danger" ng-show="crearinfante.peso.$error.number">Peso en kilogramos</p>
+        </div>
+      </div>
+      <button class="btn btn-primary" ng-disabled="crearinfante.$invalid" ng-click="enviar()">
+      <!-- type="submit" id="submit"  value="enviar"-->
+      Registrar</button>
+    </form>
+  </div>
+</div>
+<!--</div>-->
+<!--
+<div class="modal-footer">
+  <button class="btn btn-primary" ng-click="ok()">Guardar</button>
+  <button class="btn btn-warning" ng-click="cancel()">Cancelar</button>
+</div>
+-->

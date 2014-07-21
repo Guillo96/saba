@@ -1,0 +1,119 @@
+<div class="container" ng-controller="hogaresCtrl">
+	<div class="panel panel-success">
+		<div class="panel-heading">			
+			<form ng-submit="buscarHogar()">
+				<div class="row">
+					<div class="col-lg-10">
+						<div class="input-group">
+							<input name="k" type="text" class="form-control" placeholder="Buscar hogar" ng-model="buscar">							
+							<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>							
+						</div>
+					</div>				
+					<div class="col-lg-2">
+						<input type="submit" id="submit" value="Buscar" class="btn btn-success form-control">
+					</div>	
+				</div>														
+			</form>							
+		</div>
+		<div class="panel-body">
+			<div class="table-responsive">
+				<table class="table table-condensed">
+					<thead>
+						<tr>
+							<th class="text-success">Datos básicos del hogar</th>									
+						</tr>
+					</thead>
+				 	<bodyt >
+						<tr ng-repeat="hogares in datos">
+							<th>Código</th>
+							<td>{{hogares.codigo}}</td>
+						</tr>
+						<tr ng-repeat="hogares in datos">
+							<th>Nombre del hogar</th>
+							<td>{{hogares.nombre}}</td>
+						</tr>
+						<tr ng-repeat="hogares in datos">
+							<th>Departamento</th>
+							<td>{{hogares.departamento}}</td>
+						</tr>
+						<tr ng-repeat="hogares in datos">
+							<th>Ciudad</th>
+							<td >{{hogares.ciudad}}</td>
+						</tr>
+						<tr ng-repeat="hogares in datos">
+							<th>Dirección</th>
+							<td>{{hogares.direccion}}</td>
+						</tr>
+						<tr ng-repeat="hogares in datos">
+							<th>Responsable</th>
+							<td>{{hogares.responsable}}</td>
+						</tr>
+						<tr ng-repeat="hogares in datos">
+							<th>Contacto</th>
+							<td>{{hogares.contacto}} ext {{hogares.extension}} </td>
+						</tr>
+					</bodyt>
+				</table>
+				<div class="row">					
+					<div class="col-lg-8">						
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>Evento</th>
+									<th>Fecha</th>
+									<th>Hora</th>
+									<th>Documento</th>																									
+								</tr>
+							</thead>
+							<tbody> 
+								<tr ng-repeat="hogar in eventos">
+									<td>{{hogar.tipo_evento | tipoevento}}</td>
+									<td>{{hogar._kmd.lmt | date:'dd/MM/yyyy'}}</td>
+									<td>{{hogar._kmd.lmt | date:'HH:mm:ss'}}</td>
+									<td>{{hogar.documento}}</td>																			
+								</tr>																										
+							</tbody>
+						</table>						
+					</div>
+					<div class="col-lg-4">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>Nombre completo</th>
+								</tr>								
+							</thead>
+							<tbody>
+								<tr ng-repeat="infante in InfantesE">
+									<td>
+										{{infante.documento}}
+										{{infante.primer_apellido}} 
+										{{infante.segundo_apellido}}
+										{{infante.primer_nombre}}
+										{{infante.segundo_nombre}}
+									</td>
+								</tr>	
+							</tbody>								
+						</table>						
+					</div>					
+				</div>					
+				
+			</div>								
+		</div>
+		<div class="panel-footer">
+			<form ng-submit="buscarFecha()">
+				<div class="row">
+					<div class="btn-group col-lg-2">
+						<input type="submit" id="submit" value="Filtrar" class="btn btn-success form-control" ng-model="click" />
+					</div>				
+					<div class="input-append date col-lg-5">
+					    <input type="date" ng-model="fechaInicial" class="form-control"/>					    					
+					</div>	
+					<div class="input-append date col-lg-5">
+					    <input type="date" ng-model="fechaFinal" class="form-control" />		    					
+					</div>			
+				</div>	
+			</form>							
+		</div>		
+	</div>	
+</div>		 
+	

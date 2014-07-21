@@ -1,0 +1,124 @@
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta name="name" content="content">
+	<meta http-equiv="X-UA-Compatible" content="IE-Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>MFullServices</title>
+	<script src="lib/angular.min.js" type="text/javascript"></script>
+	<script src="lib/angular-route.min.js" type="text/javascript"></script>
+	<script src="lib/ui-bootstrap-tpls-0.11.0.min.js" type="text/javascript"></script>
+	<script src="lib/angular-parse.js" type="text/javascript"></script>
+	<script type="text/javascript" src="lib/angular-animate.js"></script>
+	<script type="text/javascript" src="lib/angular-sanitize.js"></script>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+	<script src="js/mdfs.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="css/mdfs.css">
+	<link rel="stylesheet" href="css/dashboard.css">
+	<script type="text/javascript" src="../../js/direccionMapa.js"></script>
+</head>
+<body ng-app="mdfs" ng-controller="ppalCtrl">
+	<nav ng-controller="navbarCtrl" class="navbar-inverse navbar-static-top hidden-print" role="navigation" ng-show="usuario">
+		<div class="navbar-header">
+		    <button class="navbar-toggle" ng-click="menuMovil = !menuMovil">
+		      <span class="sr-only">Navegación móvil</span>
+		      <span class="icon-bar"></span>
+		      <span class="icon-bar"></span>
+		      <span class="icon-bar"></span>
+		    </button>
+			<a href="#/">
+		      <img alt="Logo" class="navbar-brand logo" src="imagenes/glyphicons_330_blog.png" style="padding: 10px 15px; width: 80px; height: 60px; border-radius: 30%;">
+			</a>
+		</div>
+		<div class="navbar-collapse" collapse="menuMovil">
+		    <ul class="nav navbar-nav">
+		    	<li class="">
+		    		<form class="navbar-form">
+			    		<input type="text" ng-model="user.username" value="tecnico1">
+			    		<input type="password" ng-model="user.password" value="tecnico1">
+		    		</form>
+		    	</li>
+		        <li class="support-button">
+		        	<a href="#/">
+			            <i class="icon-home home"></i>
+		            	Inicio
+			            <i class="icon-home home"></i>
+					</a>
+				</li>
+			    <li class="dropdown">
+			        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Reportes <b class="caret"></b></a>
+			        <ul class="dropdown-menu">
+			          	<li class="semi-bold">
+			          		<a href="#/reportes/clientes">Clientes</a>
+			          	</li>
+			        	<li>
+			              <a href="#/reportes/servicios">Servicios</a>
+			        	</li>
+			            <li>
+			              <a href="#/reportes/tecnicos">Técnicos</a>
+			            </li>
+			        </ul>
+			    </li>
+			    <li class="dropdown">
+			        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Administrar <b class="caret"></b></a>
+			        <ul class="dropdown-menu">
+			            <li>
+			              <a href="#/admin/antesala">Antesala</a>
+			            </li>
+			            <li>
+			              <a href="#/admin/catalogo">Catálogo</a>
+			            </li>
+			              <a href="#/admin/clientes">Clientes</a>
+			            </li>
+			            <li>
+			              <a href="#/admin/evidencias">Evidencias</a>
+			            </li>
+			            <li>
+			              <a href="#/admin/servicios">Servicios</a>
+			            </li>
+			            <li>
+			              <a href="#/admin/tecnicos">Técnicos</a>
+			            </li>
+			            <li>
+			              <a href="#/admin/zonas">Zonas</a>
+			            </li>
+			        </ul>
+			    </li>
+		    </ul>
+		    <ul class="nav navbar-nav navbar-right">
+			    <li >
+			    	<h3>
+			    		<small class="text-success">{{Usuario}}</small>
+			    	</h3>
+			    </li>
+			    <li>
+			    	<a href="#" ng-click="salir">
+			    		<i class="glyphicon glyphicon-log-out text-danger"></i>
+			    	</a>
+			    </li>
+			</ul>
+		</div>
+	</nav>
+	<div class="container-fluid"><!--wrapper=envoltura-->
+		<div class="row">
+			<div class="menuIzquierdo hidden-xs pull-left col-xs-0 col-sm-0 col-md-2 col-lg-2 " ng-controller="menuIzquierdoCtrl" ng-show="usuario">
+				<accordion close-others="soloUnSubMenu">
+					<accordion-group heading="{{menu.titulo}}" ng-repeat="menu in menus">
+						<ul class="nav nav-pills nav-stacked">
+							<li ng-repeat="submenuX in menu.submenu">
+								<a href="#{{submenuX.ruta}}">{{submenuX.titulo}}</a>
+							</li>
+						</ul>
+					</accordion-group>
+				</accordion>
+			</div>
+			<div class="contenido col-xs-12 col-sm-12 col-md-10 col-lg-10">
+				<div ng-view class="container">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
